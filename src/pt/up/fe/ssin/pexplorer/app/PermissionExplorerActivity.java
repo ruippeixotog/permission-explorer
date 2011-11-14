@@ -30,9 +30,9 @@ public class PermissionExplorerActivity extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		String name = (String) getListAdapter().getItem(position);
+		PermissionInfo perm = (PermissionInfo) getListAdapter().getItem(position);
 		Intent intent = new Intent(this, PermissionInfoActivity.class);
-		intent.putExtra("name", name);
+		intent.putExtra("name", perm.name);
 		startActivity(intent);
 	}
 }

@@ -17,12 +17,12 @@ public class PermissionListAdapter extends SimpleObjectAdapter<PermissionInfo> {
 	@Override
 	public View getView(View inflatedView, PermissionInfo perm) {
 		TextView tv = (TextView) inflatedView.findViewById(android.R.id.text1);
-		String[] parsedName = perm.name.split("\\.");
-		tv.setText(parsedName[parsedName.length - 1]);
+		int lastDot = perm.name.lastIndexOf('.');
+		tv.setText(perm.name.substring(lastDot + 1));
 
 		if (perm.descriptionRes != 0) {
 			tv = (TextView) inflatedView.findViewById(android.R.id.text2);
-			tv.setText("perm.descriptionRes");
+			tv.setText(perm.name.substring(0, lastDot));
 		}
 		return inflatedView;
 	}

@@ -84,6 +84,10 @@ public class DataCatalog {
 		return packManager
 				.getPermissionInfo(name, PackageManager.GET_META_DATA);
 	}
+	
+	public String getPermissionDescription(PermissionInfo perm) {
+		return perm.loadDescription(packManager).toString();
+	}
 
 	private static class PermissionComparator implements
 			Comparator<PermissionInfo> {

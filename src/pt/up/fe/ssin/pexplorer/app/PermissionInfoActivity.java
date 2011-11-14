@@ -17,6 +17,7 @@ public class PermissionInfoActivity extends Activity {
 	private static final String TAB_SPEC_APPS = "apps";
 
 	PermissionInfo perm;
+	String permDescription;
 	String extendedInfo = "<More detailed description>";
 
 	@Override
@@ -25,7 +26,9 @@ public class PermissionInfoActivity extends Activity {
 
 		String name = getIntent().getStringExtra("name");
 		try {
-			perm = DataCatalog.getInstance(this).getPermissionInfo(name);
+			DataCatalog catalog = DataCatalog.getInstance(this);
+			perm = catalog.getPermissionInfo(name);
+			permDescription = catalog.getPermissionDescription(perm);
 		} catch (NameNotFoundException e) {
 			Toast.makeText(this, "permission does not exist",
 					Toast.LENGTH_SHORT).show();
@@ -68,7 +71,7 @@ public class PermissionInfoActivity extends Activity {
 
 	private void drawDetailedInfo() {
 		if (perm.descriptionRes != 0)
-			((TextView) findViewById(R.id.test)).setText(perm.descriptionRes);
+			((TextView) findViewById(R.id.test)).setText(permDescription);
 	}
 
 	private void drawActionsList() {
