@@ -1,6 +1,5 @@
 package pt.up.fe.ssin.pexplorer.app;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ListActivity;
@@ -8,27 +7,25 @@ import android.content.Intent;
 import android.content.pm.PermissionInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class PermissionExplorerActivity extends ListActivity {
+
+	private List<PermissionInfo> permissions;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// get labels for list and set adapter
-		List<String> list = new ArrayList<String>();
-		for (PermissionInfo pi : DataCatalog.getInstance(this)
-				.getAllPermissions()) {
+		permissions = DataCatalog.getInstance(this).getAllPermissions();
+		/*if (pi.packageName.equals("android"))
+			list.add(pi.name);*/
 
-			// filter by system package
-			if (pi.packageName.equals("android"))
-				list.add(pi.name);
-		}
+		drawActivity();
+	}
 
-		setListAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, list));
+	private void drawActivity() {
+		setListAdapter(new PermissionListAdapter(this, permissions));
 	}
 
 	@Override

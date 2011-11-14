@@ -9,5 +9,6 @@
 	<string name="tab_detailed_info">Info</string>
 	<string name="tab_actions_list">Examples</string>
 	<string name="tab_apps_list">Apps</string>
+	<string name="msg_filter">type to filter</string>
 
 </resources>
