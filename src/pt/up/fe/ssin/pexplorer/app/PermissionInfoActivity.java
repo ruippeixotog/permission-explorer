@@ -24,11 +24,11 @@ public class PermissionInfoActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		String name = getIntent().getStringExtra(IntentKeys.PERM_NAME);
+		String name = getIntent().getStringExtra(Keys.INTENT_EXT_NAME);
 		try {
-			DataCatalog catalog = DataCatalog.getInstance(this);
-			perm = catalog.getPermissionInfo(name);
-			permDescription = catalog.getPermissionDescription(perm);
+			PermissionCatalog catalog = PermissionCatalog.getInstance(this);
+			perm = catalog.getInfo(name);
+			permDescription = catalog.getDescription(perm);
 		} catch (NameNotFoundException e) {
 			Toast.makeText(this, "permission does not exist",
 					Toast.LENGTH_SHORT).show();
