@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PermissionExplorer</string>
+
+	<string name="app_name">PermissionExplorer</string>
+	<string name="dialog_msg_action_warn">%s\nDo you want to continue?</string>
+	<string name="continue_">Continue</string>
+	<string name="cancel">Cancel</string>
+	<string name="warning">Warning</string>
+	<string name="tab_detailed_info">Info</string>
+	<string name="tab_actions_list">Examples</string>
+	<string name="tab_apps_list">Apps</string>
 
 </resources>
