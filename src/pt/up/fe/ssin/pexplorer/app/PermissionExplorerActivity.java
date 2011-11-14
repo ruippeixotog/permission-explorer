@@ -1,4 +1,4 @@
-package pt.up.fe.ssin.pexplorer;
+package pt.up.fe.ssin.pexplorer.app;
 
 import java.util.ArrayList;
 import java.util.List;

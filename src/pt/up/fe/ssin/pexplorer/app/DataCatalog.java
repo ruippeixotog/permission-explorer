@@ -1,4 +1,4 @@
-package pt.up.fe.ssin.pexplorer;
+package pt.up.fe.ssin.pexplorer.app;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +17,12 @@ public class DataCatalog {
 
 	private static DataCatalog instance;
 
+	public static DataCatalog getInstance(Context context) {
+		if (instance == null)
+			instance = new DataCatalog(context);
+		return instance;
+	}
+
 	private PackageManager packManager;
 
 	private List<PermissionInfo> allPermissions = new ArrayList<PermissionInfo>();
@@ -25,12 +31,6 @@ public class DataCatalog {
 	private DataCatalog(Context context) {
 		packManager = context.getPackageManager();
 		reload();
-	}
-
-	public static DataCatalog getInstance(Context context) {
-		if (instance == null)
-			instance = new DataCatalog(context);
-		return instance;
 	}
 
 	public void reload() {
@@ -79,10 +79,10 @@ public class DataCatalog {
 				PackageManager.GET_META_DATA);
 	}
 
-	public PermissionData getPermissionData(String name)
+	public PermissionInfo getPermissionInfo(String name)
 			throws NameNotFoundException {
-		return new PermissionData(packManager.getPermissionInfo(name,
-				PackageManager.GET_META_DATA));
+		return packManager
+				.getPermissionInfo(name, PackageManager.GET_META_DATA);
 	}
 
 	private static class PermissionComparator implements
