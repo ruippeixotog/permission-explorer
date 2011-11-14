@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pt.up.fe.ssin.pexplorer.utils.PermissionUtils;
+
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -84,7 +86,7 @@ public class DataCatalog {
 		return packManager
 				.getPermissionInfo(name, PackageManager.GET_META_DATA);
 	}
-	
+
 	public String getPermissionDescription(PermissionInfo perm) {
 		return perm.loadDescription(packManager).toString();
 	}
@@ -105,7 +107,8 @@ public class DataCatalog {
 
 		@Override
 		public int compare(PermissionInfo arg0, PermissionInfo arg1) {
-			return arg0.name.compareTo(arg1.name);
+			return PermissionUtils.getShortName(arg0).compareTo(
+					PermissionUtils.getShortName(arg1));
 		}
 	}
 }

@@ -2,6 +2,9 @@ package pt.up.fe.ssin.pexplorer.app;
 
 import java.util.List;
 
+import pt.up.fe.ssin.pexplorer.R;
+import pt.up.fe.ssin.pexplorer.utils.Pair;
+import pt.up.fe.ssin.pexplorer.utils.PermissionUtils;
 import pt.up.fe.ssin.pexplorer.utils.SimpleObjectAdapter;
 import android.content.Context;
 import android.content.pm.PermissionInfo;
@@ -11,24 +14,29 @@ import android.widget.TextView;
 public class PermissionListAdapter extends SimpleObjectAdapter<PermissionInfo> {
 
 	public PermissionListAdapter(Context context, List<PermissionInfo> objects) {
-		super(context, android.R.layout.simple_list_item_2, objects);
+		super(context, R.layout.perm_row, objects);
 	}
 
 	@Override
 	public View getView(View inflatedView, PermissionInfo perm) {
-		TextView tv = (TextView) inflatedView.findViewById(android.R.id.text1);
-		int lastDot = perm.name.lastIndexOf('.');
-		tv.setText(perm.name.substring(lastDot + 1));
+		Pair<String, String> parsedName = PermissionUtils.decomposeName(perm);
 
-		if (perm.descriptionRes != 0) {
-			tv = (TextView) inflatedView.findViewById(android.R.id.text2);
-			tv.setText(perm.name.substring(0, lastDot));
-		}
+		TextView tv = (TextView) inflatedView.findViewById(android.R.id.text1);
+		tv.setText(parsedName.getSecond());
+
+		tv = (TextView) inflatedView.findViewById(android.R.id.text2);
+		tv.setText(parsedName.getFirst());
+
 		return inflatedView;
 	}
 
 	@Override
 	public boolean isFilterMatch(CharSequence constraint, PermissionInfo perm) {
-		return true;
+		String prefix = constraint.toString().toLowerCase();
+		String[] words = PermissionUtils.getShortName(perm).split("_");
+		for (String word : words)
+			if (word.toLowerCase().startsWith(prefix))
+				return true;
+		return false;
 	}
 }

@@ -24,7 +24,7 @@ public class PermissionInfoActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		String name = getIntent().getStringExtra("name");
+		String name = getIntent().getStringExtra(IntentKeys.PERM_NAME);
 		try {
 			DataCatalog catalog = DataCatalog.getInstance(this);
 			perm = catalog.getPermissionInfo(name);
