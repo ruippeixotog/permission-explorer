@@ -1,12 +1,20 @@
 package pt.up.fe.ssin.pexplorer.app;
 
+import java.util.Arrays;
 import java.util.List;
 
 import pt.up.fe.ssin.pexplorer.R;
-import android.app.Activity;
+import pt.up.fe.ssin.pexplorer.utils.PermissionUtils;
+import pt.up.fe.ssin.pexplorer.utils.SimpleObjectAdapter;
+import android.app.ListActivity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PermissionGroupInfo;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -14,13 +22,17 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
-public class FilterConfigActivity extends Activity {
+public class FilterConfigActivity extends ListActivity {
 
 	private static final String TAB_SPEC_GROUP = "group";
 	private static final String TAB_SPEC_LEVEL = "level";
 	private static final String TAB_SPEC_RELEVANCE = "relevance";
 
+	private PermissionCatalog catalog;
+
+	private String selectedGroupNames;
 	private List<PermissionGroupInfo> groups;
+	private PermissionGroupListAdapter adapter;
 
 	private int selectedLevel = 0;
 	private int numLevels;
@@ -32,9 +44,17 @@ public class FilterConfigActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		PermissionCatalog catalog = PermissionCatalog.getInstance(this);
+		catalog = PermissionCatalog.getInstance(this);
+		SharedPreferences prefs = getSharedPreferences(Keys.PREFS_FILE,
+				MODE_PRIVATE);
+
+		selectedGroupNames = prefs.getString(Keys.PREFS_GROUPS,
+				Keys.DEFAULT_GROUPS);
 		groups = catalog.getAllGroups();
+		selectedLevel = prefs.getInt(Keys.PREFS_LEVEL, Keys.DEFAULT_LEVEL);
 		numLevels = catalog.getNumberOfLevels();
+		selectedRelevance = prefs.getInt(Keys.PREFS_RELEVANCE,
+				Keys.DEFAULT_RELEVANCE);
 		numRelevances = catalog.getNumberOfRelevances();
 
 		drawActivity();
@@ -43,6 +63,11 @@ public class FilterConfigActivity extends Activity {
 	private void drawActivity() {
 		setContentView(R.layout.filter_config);
 		drawTabs();
+
+		adapter = new PermissionGroupListAdapter(this, groups);
+		setListAdapter(adapter);
+		getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		setSelectedGroups();
 
 		RadioGroup rg = (RadioGroup) findViewById(R.id.level);
 		for (int i = 0; i < numLevels; i++) {
@@ -88,7 +113,7 @@ public class FilterConfigActivity extends Activity {
 		tabHost.setup();
 
 		TabSpec spec1 = tabHost.newTabSpec(TAB_SPEC_GROUP);
-		spec1.setContent(R.id.filter_groups);
+		spec1.setContent(android.R.id.list);
 		spec1.setIndicator(getString(R.string.tab_filter_groups));
 		tabHost.addTab(spec1);
 
@@ -102,7 +127,16 @@ public class FilterConfigActivity extends Activity {
 		spec3.setIndicator(getString(R.string.tab_filter_relevance));
 		tabHost.addTab(spec3);
 	}
-	
+
+	private void setSelectedGroups() {
+		boolean isAll = selectedGroupNames.equals(Keys.ALL_GROUPS_VALUE);
+		List<String> groupNames = Arrays.asList(selectedGroupNames.split(";"));
+
+		for (int i = 0; i < groups.size(); i++)
+			if (isAll || groupNames.contains(groups.get(i).name))
+				getListView().setItemChecked(i, true);
+	}
+
 	private void updateLevelDescription() {
 		TextView tv = (TextView) findViewById(R.id.level_description);
 		tv.setText(getResources().getStringArray(R.array.level_descriptions)[selectedLevel]);
@@ -112,5 +146,52 @@ public class FilterConfigActivity extends Activity {
 		TextView tv = (TextView) findViewById(R.id.relevance_description);
 		tv.setText(getResources()
 				.getStringArray(R.array.relevance_descriptions)[selectedRelevance]);
+	}
+
+	@Override
+	public void finish() {
+		SparseBooleanArray selectedItems = getListView()
+				.getCheckedItemPositions();
+		StringBuffer groupsStrBuf = new StringBuffer();
+		for (int i = 0; i < groups.size(); i++)
+			if (selectedItems.get(i, false)) {
+				if (groupsStrBuf.length() != 0)
+					groupsStrBuf.append(';');
+				groupsStrBuf.append(groups.get(i).name);
+			}
+
+		SharedPreferences.Editor prefs = getSharedPreferences(Keys.PREFS_FILE,
+				MODE_PRIVATE).edit();
+
+		prefs.putString(Keys.PREFS_GROUPS, groupsStrBuf.toString());
+		prefs.putInt(Keys.PREFS_LEVEL, selectedLevel);
+		prefs.putInt(Keys.PREFS_RELEVANCE, selectedRelevance);
+		prefs.commit();
+
+		setResult(RESULT_OK, new Intent());
+		super.finish();
+	}
+
+	public class PermissionGroupListAdapter extends
+			SimpleObjectAdapter<PermissionGroupInfo> {
+
+		public PermissionGroupListAdapter(Context context,
+				List<PermissionGroupInfo> objects) {
+			super(context, R.layout.simple_list_item_2_multiple_choice, objects);
+		}
+
+		@Override
+		public View getView(View inflatedView, PermissionGroupInfo group) {
+			String name = PermissionUtils.getShortName(group);
+
+			TextView tv = (TextView) inflatedView
+					.findViewById(android.R.id.text1);
+			tv.setText(name);
+
+			tv = (TextView) inflatedView.findViewById(android.R.id.text2);
+			tv.setText(catalog.getGroupDescription(group));
+
+			return inflatedView;
+		}
 	}
 }

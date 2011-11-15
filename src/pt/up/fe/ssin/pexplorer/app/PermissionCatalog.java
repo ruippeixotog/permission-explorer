@@ -1,6 +1,7 @@
 package pt.up.fe.ssin.pexplorer.app;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -18,21 +19,13 @@ import android.content.pm.PermissionInfo;
 
 public class PermissionCatalog {
 
-	public static final int RELEVANCE_COMMON = 0;
+	public static final int RELEVANCE_ALL = 0;
 	public static final int RELEVANCE_SYSTEM = 1;
-	public static final int RELEVANCE_ALL = 2;
+	public static final int RELEVANCE_COMMON = 2;
 
+	private static final int NUM_LEVELS = 4;
+	private static final int NUM_RELEVANCES = 3;
 	private static final String SYS_PACKAGE = "android";
-
-	/*private static final List<Integer> permLevels = Collections
-			.unmodifiableList(Arrays.asList(PermissionInfo.PROTECTION_NORMAL,
-					PermissionInfo.PROTECTION_DANGEROUS,
-					PermissionInfo.PROTECTION_SIGNATURE,
-					PermissionInfo.PROTECTION_SIGNATURE_OR_SYSTEM));
-
-	private static final List<Integer> permRelevances = Collections
-			.unmodifiableList(Arrays.asList(RELEVANCE_COMMON, RELEVANCE_SYSTEM,
-					RELEVANCE_ALL));*/
 
 	private static PermissionCatalog instance;
 
@@ -81,11 +74,8 @@ public class PermissionCatalog {
 	}
 
 	public int getNumberOfLevels() {
-		return 4;
+		return NUM_LEVELS;
 	}
-	/*public List<Integer> getAllLevels() {
-		return permLevels;
-	}*/
 
 	public List<PermissionInfo> getByLevel(int level) {
 		if (permsByLevel == null) {
@@ -109,18 +99,15 @@ public class PermissionCatalog {
 		return packManager.getAllPermissionGroups(PackageManager.GET_META_DATA);
 	}
 
-	public List<PermissionInfo> getByGroup(String group)
+	public List<PermissionInfo> getByGroup(String groupName)
 			throws NameNotFoundException {
-		return packManager.queryPermissionsByGroup(group,
+		return packManager.queryPermissionsByGroup(groupName,
 				PackageManager.GET_META_DATA);
 	}
 
 	public int getNumberOfRelevances() {
-		return 3;
+		return NUM_RELEVANCES;
 	}
-	/*public List<Integer> getAllRelevances() {
-		return permRelevances;
-	}*/
 
 	public List<PermissionInfo> filter(List<PermissionInfo> list, String group,
 			Integer level, Integer relevance) {
@@ -133,8 +120,9 @@ public class PermissionCatalog {
 	}
 
 	public List<PermissionInfo> filter(List<PermissionInfo> list,
-			List<String> groups, Integer level, Integer relevance) {
-		return filter(list, new HashSet<String>(groups), level, relevance);
+			String[] groups, Integer level, Integer relevance) {
+		return filter(list, new HashSet<String>(Arrays.asList(groups)), level,
+				relevance);
 	}
 
 	public List<PermissionInfo> filter(List<PermissionInfo> list,
@@ -164,6 +152,10 @@ public class PermissionCatalog {
 
 	public String getDescription(PermissionInfo perm) {
 		return perm.loadDescription(packManager).toString();
+	}
+
+	public String getGroupDescription(PermissionGroupInfo group) {
+		return group.loadDescription(packManager).toString();
 	}
 
 	private Set<String> getCommonPermissionNames() {

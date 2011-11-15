@@ -6,6 +6,7 @@ import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.utils.FilterTextWatcher;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PermissionInfo;
 import android.database.DataSetObserver;
 import android.os.Bundle;
@@ -20,19 +21,32 @@ public class PermissionExplorerActivity extends ListActivity {
 
 	public static final int FILTER_REQ_CODE = 0;
 
+	private PermissionCatalog catalog;
 	private List<PermissionInfo> permissions;
-
 	private PermissionListAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		PermissionCatalog catalog = PermissionCatalog.getInstance(this);
-		permissions = catalog.filter(catalog.getAll(), (String) null, null,
-				PermissionCatalog.RELEVANCE_SYSTEM);
+		catalog = PermissionCatalog.getInstance(this);
+		loadPreferences();
 
 		drawActivity();
+	}
+
+	private void loadPreferences() {
+		SharedPreferences prefs = getSharedPreferences(Keys.PREFS_FILE,
+				MODE_PRIVATE);
+
+		String[] groupNames = prefs.contains(Keys.PREFS_GROUPS) ? prefs
+				.getString(Keys.PREFS_GROUPS, null).split(";") : null;
+		int level = prefs.getInt(Keys.PREFS_LEVEL, Keys.DEFAULT_LEVEL);
+		int relevance = prefs.getInt(Keys.PREFS_RELEVANCE,
+				Keys.DEFAULT_RELEVANCE);
+
+		permissions = catalog.filter(catalog.getAll(), groupNames, level,
+				relevance);
 	}
 
 	private void drawActivity() {
@@ -89,6 +103,23 @@ public class PermissionExplorerActivity extends ListActivity {
 
 		default:
 			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+
+		case FILTER_REQ_CODE:
+			if (resultCode != RESULT_OK)
+				return;
+			loadPreferences();
+			drawActivity();
+			return;
+
+		default:
+			super.onActivityResult(requestCode, resultCode, data);
+			return;
 		}
 	}
 

@@ -34,18 +34,18 @@
 		<item>A \"signatureOrSystem\" permission that the system is to grant only to packages in the Android system image or that are signed with the same certificates. Please avoid using this option, as the signature protection level should be sufficient for most needs and works regardless of exactly where applications are installed. This permission is used for certain special situations where multiple vendors have applications built in to a system image which need to share specific features explicitly because they are being built together.</item>
 	</string-array>
 
-	<string name="msg_filter_level">Only show permissions equal or above the protection level:</string>
+	<string name="msg_filter_level">Only show permissions with protection level equal or above to:</string>
 	<string name="msg_filter_relevance">Only show permissions with this relevance:</string>
 
 	<string-array name="relevance_labels">
-		<item>common</item>
-		<item>system</item>
 		<item>all</item>
+		<item>system</item>
+		<item>common</item>
 	</string-array>
 	<string-array name="relevance_descriptions">
-		<item>Show only the permissions most commonly requested by applications.</item>
-		<item>Show all permissions declared by the Android system. Those permissions are defined in all Android devices and can be requested by any application. This explorer may not have extended information on some permissions due to some of them being uncommon.</item>
 		<item>Show all permissions declared in this device, including custom ones defined by installed applications. Any application may define and enforce its own permissions, so this is not a comprehensive list of all possible permissions existant and some of them can have little to no information associated.</item>
+		<item>Show all permissions declared by the Android system. Those permissions are defined in all Android devices and can be requested by any application. This explorer may not have extended information on some permissions due to some of them being uncommon.</item>
+		<item>Show only the permissions most commonly requested by applications.</item>
 	</string-array>
 
 </resources>
