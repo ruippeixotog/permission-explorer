@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import pt.up.fe.ssin.pexplorer.operations.PermissionDBOperations;
 import pt.up.fe.ssin.pexplorer.utils.PermissionUtils;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -28,13 +29,14 @@ public class PermissionCatalog {
 	private static final String SYS_PACKAGE = "android";
 
 	private static PermissionCatalog instance;
-
+	
 	public static PermissionCatalog getInstance(Context context) {
 		if (instance == null)
 			instance = new PermissionCatalog(context);
 		return instance;
 	}
 
+	private Context context;
 	private PackageManager packManager;
 
 	private List<PermissionInfo> allPerms;
@@ -43,6 +45,7 @@ public class PermissionCatalog {
 	private Set<String> commonPermNames;
 
 	private PermissionCatalog(Context context) {
+		this.context = context;
 		packManager = context.getPackageManager();
 	}
 
@@ -160,8 +163,7 @@ public class PermissionCatalog {
 
 	private Set<String> getCommonPermissionNames() {
 		if (commonPermNames == null) {
-			commonPermNames = new HashSet<String>();
-			// TODO ir buscar a BD
+			commonPermNames = PermissionDBOperations.getCommonPermissions(this.context);
 		}
 		return commonPermNames;
 	}
