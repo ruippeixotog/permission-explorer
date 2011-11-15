@@ -12,20 +12,24 @@ public abstract class PermissionAction {
 	public static final int WARN = 1;
 	public static final int WARN_DANGEROUS = 2;
 
-	private String label;
-	private String description;
+	private int labelId;
+	private int descriptionId;
 	private int warnLevel;
-	
-	private Dialog dialog;
 
-	public PermissionAction(String label, String description, int warnLevel) {
-		this.label = label;
-		this.description = description;
+	private Dialog warningDialog;
+
+	public PermissionAction(int labelId, int descriptionId, int warnLevel) {
+		this.labelId = labelId;
+		this.descriptionId = descriptionId;
 		this.warnLevel = warnLevel;
 	}
 
-	public String getLabel() {
-		return label;
+	public String getLabel(Context context) {
+		return context.getString(labelId);
+	}
+
+	public String getDescription(Context context) {
+		return context.getString(descriptionId);
 	}
 
 	public void execute(final Context context) {
@@ -36,14 +40,13 @@ public abstract class PermissionAction {
 	}
 
 	public abstract void doAction(Context context);
-	
+
 	private Dialog getWarnDialog(final Context context) {
-		if(dialog == null) {
+		if (warningDialog == null) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(context);
-			builder.setMessage(
-					String.format(
-							context.getString(R.string.dialog_msg_action_warn),
-							description));
+			builder.setMessage(String.format(
+					context.getString(R.string.dialog_msg_action_warn),
+					getDescription(context)));
 			builder.setCancelable(true);
 			builder.setPositiveButton(R.string.continue_,
 					new DialogInterface.OnClickListener() {
@@ -53,8 +56,8 @@ public abstract class PermissionAction {
 					}).setNegativeButton(R.string.cancel, null);
 			builder.setTitle(R.string.warning);
 			builder.setIcon(android.R.drawable.ic_dialog_alert);
-			dialog = builder.create();
+			warningDialog = builder.create();
 		}
-		return dialog;
+		return warningDialog;
 	}
 }
