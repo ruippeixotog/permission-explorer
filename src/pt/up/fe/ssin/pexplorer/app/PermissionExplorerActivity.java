@@ -2,6 +2,8 @@ package pt.up.fe.ssin.pexplorer.app;
 
 import java.util.List;
 
+
+import pt.up.fe.ssin.pexplorer.operations.PermissionDBOperations;
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.utils.FilterTextWatcher;
 import android.app.ListActivity;
@@ -31,8 +33,11 @@ public class PermissionExplorerActivity extends ListActivity {
 
 		catalog = PermissionCatalog.getInstance(this);
 		loadPreferences();
-
+		
 		drawActivity();
+		PermissionDBOperations.createPermission(this);
+		PermissionDBOperations.getCommonPermissions(this);
+		PermissionDBOperations.getPermissionDescription(this, "lulz");
 	}
 
 	private void loadPreferences() {

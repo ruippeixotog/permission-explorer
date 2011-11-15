@@ -121,7 +121,7 @@ public class PermissionCatalog {
 
 	public List<PermissionInfo> filter(List<PermissionInfo> list,
 			String[] groups, Integer level, Integer relevance) {
-		return filter(list, new HashSet<String>(Arrays.asList(groups)), level,
+		return filter(list, groups == null ? null : new HashSet<String>(Arrays.asList(groups)), level,
 				relevance);
 	}
 

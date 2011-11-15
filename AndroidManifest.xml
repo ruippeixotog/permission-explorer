@@ -22,6 +22,7 @@
 		</activity>
 		<activity android:name=".app.FilterConfigActivity" >
 		</activity>
+		<provider android:name=".contentprovider.PermissionExplorerContentProvider"
+         android:authorities="pt.up.fe.ssin.pexplorer.contentprovider.permissionexplorercontentprovider"/>   
 	</application>
-
 </manifest>
