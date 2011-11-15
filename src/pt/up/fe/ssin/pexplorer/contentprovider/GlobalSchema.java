@@ -16,7 +16,7 @@ public class GlobalSchema {
 		db.execSQL("CREATE TABLE " + PERMISSION_TABLE_NAME + " ( " + PermissionExplorerContentProvider.PERMISSION_ID +
         		" INTEGER PRIMARY KEY AUTOINCREMENT, " + PermissionExplorerContentProvider.PERMISSION_NAME +
         		" VARCHAR(255), " + PermissionExplorerContentProvider.PERMISSION_COMMON + " INTEGER ," +
-        		PermissionExplorerContentProvider.PERMISSION_DESCRIPTION + " VARCHAR(255))");
+        		PermissionExplorerContentProvider.PERMISSION_DESCRIPTION + " VARCHAR(255));");
 	}
 	
 	public static void readDataFromDBFile(SQLiteDatabase db, Context context,String dataBaseName){
@@ -29,7 +29,8 @@ public class GlobalSchema {
                 {
                         String sqlCmd = sc.next();
                         Log.i("SQL Command", sqlCmd);
-                        db.execSQL(sqlCmd);
+                        if(!sqlCmd.matches("\\s*"))
+                        	db.execSQL(sqlCmd);
                 }
         } catch (IOException e) {
                 Log.e("DB " + dataBaseName, "Failed to read script file.");
