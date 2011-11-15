@@ -48,13 +48,17 @@ public class PermissionExplorerContentProvider extends ContentProvider {
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
+        private Context context;
+
 		DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
+            this.context = context;
         }
         
         @Override
         public void onCreate(SQLiteDatabase db) {
         	GlobalSchema.createSchema(db);
+        	GlobalSchema.readDataFromDBFile(db, context, DATABASE_NAME);
         }
 
         @Override
@@ -124,8 +128,6 @@ public class PermissionExplorerContentProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         dbHelper = new DatabaseHelper(getContext());
-        //SQLiteDatabase db = dbHelper.getWritableDatabase();
-    	//GlobalSchema.readDataFromDBFile(db, getContext(), DATABASE_NAME);
         return true;
     }
     
