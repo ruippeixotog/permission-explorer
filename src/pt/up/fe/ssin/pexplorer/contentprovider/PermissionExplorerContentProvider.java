@@ -2,6 +2,7 @@ package pt.up.fe.ssin.pexplorer.contentprovider;
 
 import java.util.HashMap;
 
+
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -58,7 +59,7 @@ public class PermissionExplorerContentProvider extends ContentProvider {
         @Override
         public void onCreate(SQLiteDatabase db) {
         	GlobalSchema.createSchema(db);
-        	//GlobalSchema.readDataFromDBFile(db, context, DATABASE_NAME);
+        	GlobalSchema.readDataFromDBFile(db, context, DATABASE_NAME);
         }
 
         @Override
@@ -179,6 +180,8 @@ public class PermissionExplorerContentProvider extends ContentProvider {
     static {
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sUriMatcher.addURI(AUTHORITY, GlobalSchema.PERMISSION_TABLE_NAME, PERMISSION);
+        sUriMatcher.addURI(AUTHORITY, GlobalSchema.PERMISSION_TABLE_NAME + "/#", PERM_ID);
+
 
         permissionProjectionMap = new HashMap<String, String>();
         permissionProjectionMap.put(PERMISSION_ID, PERMISSION_ID);

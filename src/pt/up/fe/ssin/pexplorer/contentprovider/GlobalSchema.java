@@ -16,7 +16,7 @@ public class GlobalSchema {
 		db.execSQL("CREATE TABLE " + PERMISSION_TABLE_NAME + " ( " + PermissionExplorerContentProvider.PERMISSION_ID +
         		" INTEGER PRIMARY KEY AUTOINCREMENT, " + PermissionExplorerContentProvider.PERMISSION_NAME +
         		" VARCHAR(255), " + PermissionExplorerContentProvider.PERMISSION_COMMON + " INTEGER ," +
-        		PermissionExplorerContentProvider.PERMISSION_DESCRIPTION + " VARCHAR(255));");
+        		PermissionExplorerContentProvider.PERMISSION_DESCRIPTION + " VARCHAR(255))");
 	}
 	
 	public static void readDataFromDBFile(SQLiteDatabase db, Context context,String dataBaseName){
