@@ -1,6 +1,7 @@
 package pt.up.fe.ssin.pexplorer.app;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,11 +15,11 @@ public class ActionRegistry {
 		return instance;
 	}
 
-	private Map<String, List<PermissionAction>> actions;
+	private Map<String, List<PermissionAction>> actions = new HashMap<String, List<PermissionAction>>();
 
 	private ActionRegistry() {
 	}
-	
+
 	public List<PermissionAction> getPermissionActions(String permName) {
 		if (actions.containsKey(permName))
 			return actions.get(permName);

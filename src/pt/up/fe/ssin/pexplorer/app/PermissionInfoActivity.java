@@ -5,6 +5,9 @@ import android.app.Activity;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PermissionInfo;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
@@ -75,7 +78,14 @@ public class PermissionInfoActivity extends Activity {
 	}
 
 	private void drawActionsList() {
-
+		ViewGroup actionsView = (ViewGroup) findViewById(R.id.actions_list);
+		for (PermissionAction action : ActionRegistry.getInstance()
+				.getPermissionActions(perm.name)) {
+			Button b = (Button) View
+					.inflate(this, R.layout.action_button, null);
+			b.setText(action.getLabel(this));
+			actionsView.addView(b);
+		}
 	}
 
 	private void drawAppsList() {

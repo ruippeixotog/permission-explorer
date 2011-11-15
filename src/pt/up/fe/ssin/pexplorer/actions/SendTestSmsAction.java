@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 public class SendTestSmsAction extends PermissionAction {
 
+	
 	static {
 		ActionRegistry.getInstance().addAction("android.permission.SEND_SMS",
 				new SendTestSmsAction());
