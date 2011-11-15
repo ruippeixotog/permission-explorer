@@ -1,7 +1,6 @@
 package pt.up.fe.ssin.pexplorer.actions;
 
 import pt.up.fe.ssin.pexplorer.R;
-import pt.up.fe.ssin.pexplorer.app.ActionRegistry;
 import pt.up.fe.ssin.pexplorer.app.PermissionAction;
 import pt.up.fe.ssin.pexplorer.utils.InputDialogBuilder;
 import android.content.Context;
@@ -12,13 +11,7 @@ import android.widget.EditText;
 
 public class SendTestSmsAction extends PermissionAction {
 
-	
-	static {
-		ActionRegistry.getInstance().addAction("android.permission.SEND_SMS",
-				new SendTestSmsAction());
-	}
-
-	private SendTestSmsAction() {
+	public SendTestSmsAction() {
 		super(R.string.send_test_sms_label, R.string.send_test_sms_desc,
 				PermissionAction.WARN);
 	}

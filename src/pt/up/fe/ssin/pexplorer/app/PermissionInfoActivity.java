@@ -6,6 +6,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PermissionInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TabHost;
@@ -84,11 +85,25 @@ public class PermissionInfoActivity extends Activity {
 			Button b = (Button) View
 					.inflate(this, R.layout.action_button, null);
 			b.setText(action.getLabel(this));
+			b.setOnClickListener(new OnActionButtonClickListener(action));
 			actionsView.addView(b);
 		}
 	}
 
 	private void drawAppsList() {
+	}
 
+	private static class OnActionButtonClickListener implements OnClickListener {
+
+		private PermissionAction action;
+
+		public OnActionButtonClickListener(PermissionAction action) {
+			this.action = action;
+		}
+
+		@Override
+		public void onClick(View v) {
+			action.doAction(v.getContext());
+		}
 	}
 }

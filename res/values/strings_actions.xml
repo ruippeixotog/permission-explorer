@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="send_test_sms_label">Send test SMS</string>
-    <string name="send_test_sms_desc">This action will send a test sms for a number chosen by the user. Operator charges may apply.</string>
-    <string name="send">Send</string>
-    <string name="send_test_sms_title">Send SMS</string>
-    <string name="send_test_sms_dialog_label">Choose the mobile number to receive the message.</string>
-    <string name="send_test_sms_sms_text">This SMS was sent from PermissionExplorer</string>
 
-	
+	<string name="send_test_sms_label">Send test SMS</string>
+	<string name="send_test_sms_desc">This action will send a test sms for a number chosen by the user. Operator charges may apply.</string>
+	<string name="send">Send</string>
+	<string name="send_test_sms_title">Send SMS</string>
+	<string name="send_test_sms_dialog_label">Choose the mobile number to receive the message.</string>
+	<string name="send_test_sms_sms_text">This SMS was sent from PermissionExplorer.</string>
+
 </resources>

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pt.up.fe.ssin.pexplorer.actions.SendTestSmsAction;
+
 public class ActionRegistry {
 
 	private static ActionRegistry instance;
@@ -16,6 +18,11 @@ public class ActionRegistry {
 	}
 
 	private Map<String, List<PermissionAction>> actions = new HashMap<String, List<PermissionAction>>();
+
+	static {
+		getInstance().addAction("android.permission.SEND_SMS",
+				new SendTestSmsAction());
+	}
 
 	private ActionRegistry() {
 	}
@@ -29,8 +36,9 @@ public class ActionRegistry {
 		return permActions;
 	}
 
-	public void addAction(String permName, PermissionAction action) {
-		addAction(permName, action, -1);
+	public void addAction(String permName, PermissionAction... actions) {
+		for (PermissionAction action : actions)
+			addAction(permName, action, -1);
 	}
 
 	public void addAction(String permName, PermissionAction action, int position) {
