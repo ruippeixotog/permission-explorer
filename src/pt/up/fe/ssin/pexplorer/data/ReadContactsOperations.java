@@ -4,7 +4,6 @@ import pt.up.fe.ssin.pexplorer.entities.Contact;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
-import android.util.Log;
 
 public class ReadContactsOperations {
 	
