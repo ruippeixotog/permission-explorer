@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class PermissionListAdapter extends SimpleObjectAdapter<PermissionInfo> {
-	
+
 	PermissionCatalog catalog;
 
 	public PermissionListAdapter(Context context, List<PermissionInfo> objects) {
@@ -35,11 +35,19 @@ public class PermissionListAdapter extends SimpleObjectAdapter<PermissionInfo> {
 
 	@Override
 	public boolean isFilterMatch(CharSequence constraint, PermissionInfo perm) {
-		String prefix = constraint.toString().toLowerCase();
+		String[] prefixes = constraint.toString().toLowerCase().split(" ");
 		String[] words = PermissionUtils.getShortName(perm).split("_");
-		for (String word : words)
-			if (word.toLowerCase().startsWith(prefix))
-				return true;
-		return false;
+
+		for (String prefix : prefixes) {
+			boolean hasPrefix = false;
+			for (String word : words)
+				if (word.toLowerCase().startsWith(prefix)) {
+					hasPrefix = true;
+					break;
+				}
+			if (!hasPrefix)
+				return false;
+		}
+		return true;
 	}
 }
