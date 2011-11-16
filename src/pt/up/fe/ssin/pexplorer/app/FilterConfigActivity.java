@@ -14,6 +14,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PermissionGroupInfo;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -33,13 +35,15 @@ public class FilterConfigActivity extends ListActivity {
 
 	private String selectedGroupNames;
 	private List<PermissionGroupInfo> groups;
-	private PermissionGroupListAdapter adapter;
 
 	private int selectedLevel = 0;
 	private int numLevels;
 
 	private int selectedRelevance = 0;
 	private int numRelevances;
+
+	private TabHost tabHost;
+	private PermissionGroupListAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -110,7 +114,7 @@ public class FilterConfigActivity extends ListActivity {
 	}
 
 	private void drawTabs() {
-		TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
+		tabHost = (TabHost) findViewById(R.id.tabhost);
 		tabHost.setup();
 
 		TabSpec spec1 = tabHost.newTabSpec(TAB_SPEC_GROUP);
@@ -147,6 +151,38 @@ public class FilterConfigActivity extends ListActivity {
 		TextView tv = (TextView) findViewById(R.id.relevance_description);
 		tv.setText(getResources()
 				.getStringArray(R.array.relevance_descriptions)[selectedRelevance]);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.filter_group, menu);
+		return true;
+	}
+
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		super.onPrepareOptionsMenu(menu);
+		return tabHost.getCurrentTabTag().equals(TAB_SPEC_GROUP);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.select_all: {
+			for (int i = 0; i < getListAdapter().getCount(); i++)
+				getListView().setItemChecked(i, true);
+			return true;
+		}
+
+		case R.id.deselect_all: {
+			for (int i = 0; i < getListAdapter().getCount(); i++)
+				getListView().setItemChecked(i, false);
+			return true;
+		}
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@Override
