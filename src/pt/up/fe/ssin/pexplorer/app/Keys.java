@@ -1,5 +1,6 @@
 package pt.up.fe.ssin.pexplorer.app;
 
+import pt.up.fe.ssin.pexplorer.data.PermissionCatalog;
 import android.content.pm.PermissionInfo;
 
 public interface Keys {

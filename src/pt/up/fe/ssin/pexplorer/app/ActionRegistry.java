@@ -19,6 +19,7 @@ public class ActionRegistry {
 
 	private Map<String, List<PermissionAction>> actions = new HashMap<String, List<PermissionAction>>();
 
+	// register all actions implemented for each permission
 	static {
 		getInstance().addAction("android.permission.SEND_SMS",
 				new SendTestSmsAction());

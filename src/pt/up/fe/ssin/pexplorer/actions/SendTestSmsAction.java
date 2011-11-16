@@ -17,7 +17,7 @@ public class SendTestSmsAction extends PermissionAction {
 	}
 
 	@Override
-	public void doAction(final Context context) {
+	protected void doAction(final Context context) {
 		InputDialogBuilder builder = new InputDialogBuilder(context);
 		final EditText inputText = builder.getEditText();
 		inputText.setInputType(InputType.TYPE_CLASS_PHONE);

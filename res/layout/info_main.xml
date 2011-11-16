@@ -23,13 +23,17 @@
 				android:id="@+id/detailed_info"
 				layout="@layout/detailed_info" />
 
-			<include
+			<LinearLayout
 				android:id="@+id/actions_list"
-				layout="@layout/actions_list" />
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:orientation="vertical" />
 
-			<include
-				android:id="@+id/apps_list"
-				layout="@layout/apps_list" />
+			<ListView
+				android:id="@android:id/list"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:orientation="vertical" />
 		</FrameLayout>
 	</LinearLayout>
 

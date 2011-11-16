@@ -39,7 +39,7 @@ public abstract class PermissionAction {
 			doAction(context);
 	}
 
-	public abstract void doAction(Context context);
+	protected abstract void doAction(Context context);
 
 	private Dialog getWarnDialog(final Context context) {
 		if (warningDialog == null) {

@@ -1,4 +1,4 @@
-package pt.up.fe.ssin.pexplorer.app;
+package pt.up.fe.ssin.pexplorer.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,9 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import pt.up.fe.ssin.pexplorer.operations.PermissionDBOperations;
 import pt.up.fe.ssin.pexplorer.utils.PermissionUtils;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PermissionGroupInfo;
@@ -29,7 +30,7 @@ public class PermissionCatalog {
 	private static final String SYS_PACKAGE = "android";
 
 	private static PermissionCatalog instance;
-	
+
 	public static PermissionCatalog getInstance(Context context) {
 		if (instance == null)
 			instance = new PermissionCatalog(context);
@@ -41,6 +42,7 @@ public class PermissionCatalog {
 
 	private List<PermissionInfo> allPerms;
 	private Map<Integer, List<PermissionInfo>> permsByLevel;
+	private Map<String, List<ApplicationInfo>> appsByPerm;
 
 	private Set<String> commonPermNames;
 
@@ -52,6 +54,14 @@ public class PermissionCatalog {
 	public void reload() {
 		allPerms = null;
 		permsByLevel = null;
+	}
+
+	public PackageManager getPackageManager() {
+		return packManager;
+	}
+
+	public void setPackManager(PackageManager packManager) {
+		this.packManager = packManager;
 	}
 
 	public List<PermissionInfo> getAll() {
@@ -124,8 +134,10 @@ public class PermissionCatalog {
 
 	public List<PermissionInfo> filter(List<PermissionInfo> list,
 			String[] groups, Integer level, Integer relevance) {
-		return filter(list, groups == null ? null : new HashSet<String>(Arrays.asList(groups)), level,
-				relevance);
+		return filter(
+				list,
+				groups == null ? null : new HashSet<String>(Arrays
+						.asList(groups)), level, relevance);
 	}
 
 	public List<PermissionInfo> filter(List<PermissionInfo> list,
@@ -157,13 +169,44 @@ public class PermissionCatalog {
 		return perm.loadDescription(packManager).toString();
 	}
 
+	public List<ApplicationInfo> getApplications(PermissionInfo perm) {
+		if (appsByPerm == null) {
+			appsByPerm = new HashMap<String, List<ApplicationInfo>>();
+			for (ApplicationInfo app : packManager
+					.getInstalledApplications(PackageManager.GET_META_DATA)) {
+				try {
+					PackageInfo pack = packManager.getPackageInfo(
+							app.packageName, PackageManager.GET_PERMISSIONS);
+
+					if (pack.requestedPermissions == null)
+						continue;
+
+					for (String permName : pack.requestedPermissions) {
+						if (!appsByPerm.containsKey(permName))
+							appsByPerm.put(permName,
+									new ArrayList<ApplicationInfo>());
+						appsByPerm.get(permName).add(app);
+					}
+				} catch (NameNotFoundException e) {
+					throw new AssertionError();
+				}
+			}
+
+			for (List<ApplicationInfo> apps : appsByPerm.values())
+				Collections.sort(apps, getAppComparatorInstance());
+		}
+		return appsByPerm.containsKey(perm.name) ? appsByPerm.get(perm.name)
+				: new ArrayList<ApplicationInfo>();
+	}
+
 	public String getGroupDescription(PermissionGroupInfo group) {
 		return group.loadDescription(packManager).toString();
 	}
 
 	private Set<String> getCommonPermissionNames() {
 		if (commonPermNames == null) {
-			commonPermNames = PermissionDBOperations.getCommonPermissions(this.context);
+			commonPermNames = PermissionDBOperations
+					.getCommonPermissions(this.context);
 		}
 		return commonPermNames;
 	}
@@ -187,5 +230,22 @@ public class PermissionCatalog {
 			return PermissionUtils.getShortName(arg0).compareTo(
 					PermissionUtils.getShortName(arg1));
 		}
+	}
+
+	private class AppComparator implements Comparator<ApplicationInfo> {
+
+		@Override
+		public int compare(ApplicationInfo arg0, ApplicationInfo arg1) {
+			return arg0.loadLabel(packManager).toString()
+					.compareTo(arg1.loadLabel(packManager).toString());
+		}
+	}
+
+	private AppComparator appCompInstance;
+
+	public Comparator<ApplicationInfo> getAppComparatorInstance() {
+		if (appCompInstance == null)
+			appCompInstance = new AppComparator();
+		return appCompInstance;
 	}
 }

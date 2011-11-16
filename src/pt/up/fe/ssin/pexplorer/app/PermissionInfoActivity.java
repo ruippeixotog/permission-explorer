@@ -1,7 +1,12 @@
 package pt.up.fe.ssin.pexplorer.app;
 
+import java.util.List;
+
 import pt.up.fe.ssin.pexplorer.R;
-import android.app.Activity;
+import pt.up.fe.ssin.pexplorer.data.PermissionCatalog;
+import pt.up.fe.ssin.pexplorer.utils.ApplicationDetailsHelper;
+import android.app.ListActivity;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PermissionInfo;
 import android.os.Bundle;
@@ -9,20 +14,23 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PermissionInfoActivity extends Activity {
+public class PermissionInfoActivity extends ListActivity {
 
 	private static final String TAB_SPEC_INFO = "info";
 	private static final String TAB_SPEC_ACTIONS = "actions";
 	private static final String TAB_SPEC_APPS = "apps";
 
-	PermissionInfo perm;
-	String permDescription;
-	String extendedInfo = "<More detailed description>";
+	private PermissionInfo perm;
+	private String permDescription;
+	private String extendedInfo;
+	private List<ApplicationInfo> permittedApps;
+
+	private ApplicationListAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,8 @@ public class PermissionInfoActivity extends Activity {
 			PermissionCatalog catalog = PermissionCatalog.getInstance(this);
 			perm = catalog.getInfo(name);
 			permDescription = catalog.getDescription(perm);
+			permittedApps = catalog.getApplications(perm);
+
 		} catch (NameNotFoundException e) {
 			Toast.makeText(this, "permission does not exist",
 					Toast.LENGTH_SHORT).show();
@@ -57,20 +67,19 @@ public class PermissionInfoActivity extends Activity {
 		TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
 		tabHost.setup();
 
-		TabSpec spec1 = tabHost.newTabSpec(TAB_SPEC_INFO);
-		spec1.setContent(R.id.detailed_info);
-		spec1.setIndicator(getString(R.string.tab_detailed_info));
-		tabHost.addTab(spec1);
+		tabHost.addTab(tabHost.newTabSpec(TAB_SPEC_INFO)
+				.setContent(R.id.detailed_info)
+				.setIndicator(getString(R.string.tab_detailed_info)));
 
-		TabSpec spec2 = tabHost.newTabSpec(TAB_SPEC_ACTIONS);
-		spec2.setContent(R.id.actions_list);
-		spec2.setIndicator(getString(R.string.tab_actions_list));
-		tabHost.addTab(spec2);
+		tabHost.addTab(tabHost.newTabSpec(TAB_SPEC_ACTIONS)
+				.setContent(R.id.actions_list)
+				.setIndicator(getString(R.string.tab_actions_list)));
 
-		TabSpec spec3 = tabHost.newTabSpec(TAB_SPEC_APPS);
-		spec3.setContent(R.id.apps_list);
-		spec3.setIndicator(getString(R.string.tab_apps_list));
-		tabHost.addTab(spec3);
+		tabHost.addTab(tabHost
+				.newTabSpec(TAB_SPEC_APPS)
+				.setContent(android.R.id.list)
+				.setIndicator(getString(R.string.tab_apps_list),
+						getResources().getDrawable(R.drawable.ic_tab_apps)));
 	}
 
 	private void drawDetailedInfo() {
@@ -82,15 +91,25 @@ public class PermissionInfoActivity extends Activity {
 		ViewGroup actionsView = (ViewGroup) findViewById(R.id.actions_list);
 		for (PermissionAction action : ActionRegistry.getInstance()
 				.getPermissionActions(perm.name)) {
-			Button b = (Button) View
-					.inflate(this, R.layout.action_button, null);
+			View.inflate(this, R.layout.action_button, actionsView);
+			Button b = (Button) actionsView.getChildAt(actionsView
+					.getChildCount() - 1);
 			b.setText(action.getLabel(this));
 			b.setOnClickListener(new OnActionButtonClickListener(action));
-			actionsView.addView(b);
+			// actionsView.addView(b);
 		}
 	}
 
 	private void drawAppsList() {
+		adapter = new ApplicationListAdapter(this, permittedApps);
+		setListAdapter(adapter);
+	}
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		ApplicationInfo app = adapter.getItem(position);
+		startActivity(ApplicationDetailsHelper
+				.getApplicationDetailsIntent(app.packageName));
 	}
 
 	private static class OnActionButtonClickListener implements OnClickListener {
@@ -103,7 +122,7 @@ public class PermissionInfoActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			action.doAction(v.getContext());
+			action.execute(v.getContext());
 		}
 	}
 }
