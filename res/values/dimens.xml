@@ -2,5 +2,7 @@
 <resources>
 
 	<dimen name="default_padding">6dip</dimen>
+	<dimen name="line_spacing">10dip</dimen>
+	<dimen name="line_spacing_short">6dip</dimen>
 
 </resources>

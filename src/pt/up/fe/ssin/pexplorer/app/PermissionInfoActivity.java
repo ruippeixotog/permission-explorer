@@ -5,6 +5,7 @@ import java.util.List;
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.data.PermissionCatalog;
 import pt.up.fe.ssin.pexplorer.utils.ApplicationDetailsHelper;
+import pt.up.fe.ssin.pexplorer.utils.PermissionUtils;
 import android.app.ListActivity;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -40,7 +41,8 @@ public class PermissionInfoActivity extends ListActivity {
 		try {
 			PermissionCatalog catalog = PermissionCatalog.getInstance(this);
 			perm = catalog.getInfo(name);
-			permDescription = catalog.getDescription(perm);
+			permDescription = (String) perm.loadDescription(catalog
+					.getPackageManager());
 			permittedApps = catalog.getApplications(perm);
 
 		} catch (NameNotFoundException e) {
@@ -55,7 +57,7 @@ public class PermissionInfoActivity extends ListActivity {
 
 	private void drawActivity() {
 		setContentView(R.layout.info_main);
-		setTitle(perm.name);
+		setTitle(PermissionUtils.getShortName(perm));
 		drawTabs();
 
 		drawDetailedInfo();
@@ -83,8 +85,20 @@ public class PermissionInfoActivity extends ListActivity {
 	}
 
 	private void drawDetailedInfo() {
-		if (perm.descriptionRes != 0)
-			((TextView) findViewById(R.id.test)).setText(permDescription);
+		TextView tv = (TextView) findViewById(R.id.name);
+		tv.setText(perm.name);
+
+		tv = (TextView) findViewById(R.id.group);
+		tv.setText(perm.group);
+
+		tv = (TextView) findViewById(R.id.level);
+		tv.setText(getResources().getStringArray(R.array.level_labels)[perm.protectionLevel]);
+
+		tv = (TextView) findViewById(R.id.description);
+		tv.setText(permDescription);
+
+		tv = (TextView) findViewById(R.id.ext_description);
+		tv.setText(extendedInfo);
 	}
 
 	private void drawActionsList() {
@@ -96,7 +110,6 @@ public class PermissionInfoActivity extends ListActivity {
 					.getChildCount() - 1);
 			b.setText(action.getLabel(this));
 			b.setOnClickListener(new OnActionButtonClickListener(action));
-			// actionsView.addView(b);
 		}
 	}
 

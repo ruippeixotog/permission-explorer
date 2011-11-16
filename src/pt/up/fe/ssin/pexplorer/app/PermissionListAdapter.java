@@ -3,7 +3,7 @@ package pt.up.fe.ssin.pexplorer.app;
 import java.util.List;
 
 import pt.up.fe.ssin.pexplorer.R;
-import pt.up.fe.ssin.pexplorer.utils.Pair;
+import pt.up.fe.ssin.pexplorer.data.PermissionCatalog;
 import pt.up.fe.ssin.pexplorer.utils.PermissionUtils;
 import pt.up.fe.ssin.pexplorer.utils.SimpleObjectAdapter;
 import android.content.Context;
@@ -12,20 +12,23 @@ import android.view.View;
 import android.widget.TextView;
 
 public class PermissionListAdapter extends SimpleObjectAdapter<PermissionInfo> {
+	
+	PermissionCatalog catalog;
 
 	public PermissionListAdapter(Context context, List<PermissionInfo> objects) {
 		super(context, R.layout.perm_row, objects);
+		catalog = PermissionCatalog.getInstance(context);
 	}
 
 	@Override
 	public View getView(View inflatedView, PermissionInfo perm) {
-		Pair<String, String> parsedName = PermissionUtils.decomposeName(perm);
+		String shortName = PermissionUtils.getShortName(perm);
 
 		TextView tv = (TextView) inflatedView.findViewById(android.R.id.text1);
-		tv.setText(parsedName.getSecond());
+		tv.setText(shortName);
 
 		tv = (TextView) inflatedView.findViewById(android.R.id.text2);
-		tv.setText(parsedName.getFirst());
+		tv.setText(perm.loadLabel(catalog.getPackageManager()));
 
 		return inflatedView;
 	}

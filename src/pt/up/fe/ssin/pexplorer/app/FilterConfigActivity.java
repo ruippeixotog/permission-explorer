@@ -190,7 +190,7 @@ public class FilterConfigActivity extends ListActivity {
 			tv.setText(name);
 
 			tv = (TextView) inflatedView.findViewById(android.R.id.text2);
-			tv.setText(catalog.getGroupDescription(group));
+			tv.setText(group.loadDescription(catalog.getPackageManager()));
 
 			return inflatedView;
 		}

@@ -165,10 +165,6 @@ public class PermissionCatalog {
 				PackageManager.GET_META_DATA);
 	}
 
-	public String getDescription(PermissionInfo perm) {
-		return perm.loadDescription(packManager).toString();
-	}
-
 	public List<ApplicationInfo> getApplications(PermissionInfo perm) {
 		if (appsByPerm == null) {
 			appsByPerm = new HashMap<String, List<ApplicationInfo>>();
@@ -197,10 +193,6 @@ public class PermissionCatalog {
 		}
 		return appsByPerm.containsKey(perm.name) ? appsByPerm.get(perm.name)
 				: new ArrayList<ApplicationInfo>();
-	}
-
-	public String getGroupDescription(PermissionGroupInfo group) {
-		return group.loadDescription(packManager).toString();
 	}
 
 	private Set<String> getCommonPermissionNames() {
