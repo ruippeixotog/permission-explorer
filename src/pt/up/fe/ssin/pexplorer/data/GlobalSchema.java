@@ -24,7 +24,6 @@ public class GlobalSchema {
         try {
                 sc = new Scanner(context.getAssets().open(CREATE_SCRIPT_FILE));
                 sc.useDelimiter(";");
-                
                 while (sc.hasNext())
                 {
                         String sqlCmd = sc.next();

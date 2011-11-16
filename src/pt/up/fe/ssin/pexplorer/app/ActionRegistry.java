@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pt.up.fe.ssin.pexplorer.actions.PhoneCallAction;
 import pt.up.fe.ssin.pexplorer.actions.SendTestSmsAction;
 
 public class ActionRegistry {
@@ -23,6 +24,8 @@ public class ActionRegistry {
 	static {
 		getInstance().addAction("android.permission.SEND_SMS",
 				new SendTestSmsAction());
+		getInstance().addAction("android.permission.CALL_PHONE", 
+				new PhoneCallAction());
 	}
 
 	private ActionRegistry() {

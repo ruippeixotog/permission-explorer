@@ -58,7 +58,7 @@ public class PermissionExplorerContentProvider extends ContentProvider {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			GlobalSchema.createSchema(db);
-			GlobalSchema.readDataFromDBFile(db, context, DATABASE_NAME);
+			GlobalSchema.readDataFromDBFile(db, this.context, DATABASE_NAME);
 		}
 
 		@Override

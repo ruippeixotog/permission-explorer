@@ -7,5 +7,10 @@
 	<string name="send_test_sms_title">Send SMS</string>
 	<string name="send_test_sms_dialog_label">Choose the mobile number to receive the message.</string>
 	<string name="send_test_sms_sms_text">This SMS was sent from PermissionExplorer.</string>
-
+	
+	<string name="call_phone_label">Call a phone number</string>
+	<string name="call">Call</string>
+	<string name="call_phone_desc">This action will make a call to a contact chosen by the user. Operator charges may apply.</string>
+	<string name="call_phone_title">Call Phone</string>
+	<string name="call_phone_dialog_label">Choose the mobile number to receive the call.</string>
 </resources>

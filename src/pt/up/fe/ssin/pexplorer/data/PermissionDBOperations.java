@@ -3,10 +3,8 @@ package pt.up.fe.ssin.pexplorer.data;
 import java.util.HashSet;
 import java.util.Set;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 import android.util.Log;
 
 public class PermissionDBOperations{ 	
