@@ -13,4 +13,9 @@
 	<string name="call_phone_desc">This action will make a call to a contact chosen by the user. Operator charges may apply.</string>
 	<string name="call_phone_title">Call Phone</string>
 	<string name="call_phone_dialog_label">Choose the mobile number to receive the call.</string>
+	
+	<string name="read_contact_label">Get Information about a Contact</string>
+	<string name="read_contact">Read a Contact</string>
+	<string name="read_contact_desc">This action will make access the information of random contact.</string>
+	<string name="read_contact_title">Read Contact Information</string>
 </resources>
