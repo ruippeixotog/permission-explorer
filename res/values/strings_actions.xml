@@ -16,6 +16,11 @@
 	
 	<string name="read_contact_label">Get Information about a Contact</string>
 	<string name="read_contact">Read a Contact</string>
-	<string name="read_contact_desc">This action will make access the information of random contact.</string>
+	<string name="read_contact_desc">This action will access the information of random contact.</string>
 	<string name="read_contact_title">Read Contact Information</string>
+	
+	<string name="read_phone_state_label">Phone State Information</string>
+	<string name="read_phone_state">Read Phone Sate Information</string>
+	<string name="read_phone_state_desc">This action will access the information about you phone.</string>
+	<string name="read_phone_state_title">Read Contact Information</string>
 </resources>

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import pt.up.fe.ssin.pexplorer.actions.PhoneCallAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadContactsAction;
+import pt.up.fe.ssin.pexplorer.actions.ReadPhoneStateAction;
 import pt.up.fe.ssin.pexplorer.actions.SendTestSmsAction;
 
 public class ActionRegistry {
@@ -29,6 +30,8 @@ public class ActionRegistry {
 				new PhoneCallAction());
 		getInstance().addAction("android.permission.READ_CONTACTS", 
 				new ReadContactsAction());
+		getInstance().addAction("android.permission.READ_PHONE_STATE", 
+				new ReadPhoneStateAction());
 	}
 
 	private ActionRegistry() {
