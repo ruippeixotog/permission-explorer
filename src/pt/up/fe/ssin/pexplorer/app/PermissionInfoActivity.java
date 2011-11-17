@@ -7,10 +7,13 @@ import pt.up.fe.ssin.pexplorer.data.PermissionCatalog;
 import pt.up.fe.ssin.pexplorer.utils.ApplicationDetailsHelper;
 import pt.up.fe.ssin.pexplorer.utils.PermissionUtils;
 import android.app.ListActivity;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PermissionInfo;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -30,27 +33,50 @@ public class PermissionInfoActivity extends ListActivity {
 	private String permDescription;
 	private String extendedInfo;
 	private List<ApplicationInfo> permittedApps;
+	private List<ApplicationInfo> permittedDownloadedApps;
 
+	private TabHost tabHost;
 	private ApplicationListAdapter adapter;
+	private boolean showAllApps = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		PermissionCatalog catalog = PermissionCatalog.getInstance(this);
+		SharedPreferences prefs = getSharedPreferences(Keys.PREFS_FILE,
+				MODE_PRIVATE);
+
 		String name = getIntent().getStringExtra(Keys.INTENT_EXT_NAME);
 		try {
-			PermissionCatalog catalog = PermissionCatalog.getInstance(this);
 			perm = catalog.getInfo(name);
-			permDescription = (String) perm.loadDescription(catalog
-					.getPackageManager());
-			permittedApps = catalog.getApplications(perm);
-
 		} catch (NameNotFoundException e) {
 			Toast.makeText(this, "permission does not exist",
 					Toast.LENGTH_SHORT).show();
 			finish();
 			return;
 		}
+
+		permDescription = (String) perm.loadDescription(catalog
+				.getPackageManager());
+
+		permittedApps = catalog.getApplications(perm);
+		permittedDownloadedApps = catalog.filterApplications(permittedApps,
+				true);
+
+		showAllApps = prefs.getBoolean(Keys.PREFS_SHOW_ALL_APPS,
+				Keys.DEFAULT_SHOW_ALL_APPS);
+
+		/*Bundle b = perm.metaData;
+		try {
+			PackageInfo info = catalog.getPackageManager().getPackageInfo(perm.packageName, 0);
+			info.
+			
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.e("bundle meta", b == null ? "NULL" : b.toString());*/
 
 		drawActivity();
 	}
@@ -66,7 +92,7 @@ public class PermissionInfoActivity extends ListActivity {
 	}
 
 	private void drawTabs() {
-		TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
+		tabHost = (TabHost) findViewById(R.id.tabhost);
 		tabHost.setup();
 
 		tabHost.addTab(tabHost.newTabSpec(TAB_SPEC_INFO)
@@ -114,7 +140,8 @@ public class PermissionInfoActivity extends ListActivity {
 	}
 
 	private void drawAppsList() {
-		adapter = new ApplicationListAdapter(this, permittedApps);
+		adapter = new ApplicationListAdapter(this, showAllApps ? permittedApps
+				: permittedDownloadedApps);
 		setListAdapter(adapter);
 	}
 
@@ -123,6 +150,46 @@ public class PermissionInfoActivity extends ListActivity {
 		ApplicationInfo app = adapter.getItem(position);
 		startActivity(ApplicationDetailsHelper
 				.getApplicationDetailsIntent(app.packageName));
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.info_apps, menu);
+		return true;
+	}
+
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		super.onPrepareOptionsMenu(menu);
+		if (!tabHost.getCurrentTabTag().equals(TAB_SPEC_APPS))
+			return false;
+
+		menu.getItem(0).setTitle(
+				showAllApps ? R.string.show_only_downloaded_apps
+						: R.string.show_all_apps);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.toggle_show: {
+			showAllApps = !showAllApps;
+
+			SharedPreferences.Editor prefs = getSharedPreferences(
+					Keys.PREFS_FILE, MODE_PRIVATE).edit();
+			prefs.putBoolean(Keys.PREFS_SHOW_ALL_APPS, showAllApps);
+			prefs.commit();
+
+			adapter = new ApplicationListAdapter(this,
+					showAllApps ? permittedApps : permittedDownloadedApps);
+			setListAdapter(adapter);
+			return true;
+		}
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	private static class OnActionButtonClickListener implements OnClickListener {

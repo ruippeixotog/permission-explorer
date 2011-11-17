@@ -195,6 +195,18 @@ public class PermissionCatalog {
 				: new ArrayList<ApplicationInfo>();
 	}
 
+	public List<ApplicationInfo> filterApplications(List<ApplicationInfo> list,
+			boolean downloadedOnly) {
+		List<ApplicationInfo> filteredList = new ArrayList<ApplicationInfo>();
+		for (ApplicationInfo app : list) {
+			if (downloadedOnly
+					&& (app.flags & ApplicationInfo.FLAG_SYSTEM) != 0)
+				continue;
+			filteredList.add(app);
+		}
+		return filteredList;
+	}
+
 	private Set<String> getCommonPermissionNames() {
 		if (commonPermNames == null) {
 			commonPermNames = PermissionDBOperations
