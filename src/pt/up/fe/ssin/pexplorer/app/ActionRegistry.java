@@ -13,6 +13,7 @@ import pt.up.fe.ssin.pexplorer.actions.PhoneCallAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadContactsAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadPhoneStateAction;
 import pt.up.fe.ssin.pexplorer.actions.SendTestSmsAction;
+import pt.up.fe.ssin.pexplorer.actions.WriteSettingsAction;
 
 public class ActionRegistry {
 
@@ -44,6 +45,8 @@ public class ActionRegistry {
 				new AccessNetworkStateAction());
 		getInstance().addAction("android.permission.CHANGE_WIFI_STATE", 
 				new ChangeWifiStateAction());
+		getInstance().addAction("android.permission.WRITE_SETTINGS", 
+				new WriteSettingsAction());
 	}
 
 	private ActionRegistry() {

@@ -38,4 +38,6 @@
 	<string name="wifi_state_label">Change Wifi State</string>
 	<string name="wifi_state_desc">This action will change the current state of your wifi.</string>
 	
+	<string name="write_settings_label">Change Screen Brightness</string>
+	<string name="write_settings_desc">This action will change the current brightness of your screen.</string>
 </resources>
