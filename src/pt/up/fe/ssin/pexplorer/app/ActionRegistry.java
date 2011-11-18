@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pt.up.fe.ssin.pexplorer.actions.AccessFineLocationAction;
+import pt.up.fe.ssin.pexplorer.actions.AccessNetworkStateAction;
+import pt.up.fe.ssin.pexplorer.actions.ChangeWifiStateAction;
+import pt.up.fe.ssin.pexplorer.actions.InternetAccessAction;
 import pt.up.fe.ssin.pexplorer.actions.PhoneCallAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadContactsAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadPhoneStateAction;
@@ -32,6 +36,14 @@ public class ActionRegistry {
 				new ReadContactsAction());
 		getInstance().addAction("android.permission.READ_PHONE_STATE", 
 				new ReadPhoneStateAction());
+		getInstance().addAction("android.permission.ACCESS_FINE_LOCATION", 
+				new AccessFineLocationAction());
+		getInstance().addAction("android.permission.INTERNET", 
+				new InternetAccessAction());
+		getInstance().addAction("android.permission.ACCESS_NETWORK_STATE", 
+				new AccessNetworkStateAction());
+		getInstance().addAction("android.permission.CHANGE_WIFI_STATE", 
+				new ChangeWifiStateAction());
 	}
 
 	private ActionRegistry() {

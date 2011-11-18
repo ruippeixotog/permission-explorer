@@ -50,3 +50,7 @@ INSERT INTO permissions (name,common,description) VALUES ('android.permission.WR
 but only has the possibility of moderate impact. Global settings are pretty much anything you would find under Android’s main 
 ‘settings’ window. However there are a lot of these setting that are perfectly reasonable for an application to want to change. 
 Typical applications that would use this include: Volume control widget, notifications, widgets, settings widgets.');
+INSERT INTO permissions (name,common,description) VALUES ('android.permission.ACCESS_NETWORK_STATE',1,'This permission access the information
+about your network. This way, the application knows if your network(wigi or mobile) is enabled or disabled. This permission is of low/moderate importance.');
+INSERT INTO permissions (name,common,description) VALUES ('android.permission.CHANGE_WIFI_STATE',1,'This permission changes the state
+of your wifi connection. In other words, if wifi is enabled it will be disabled and vice-versa. This permission is of low/moderate importance.');

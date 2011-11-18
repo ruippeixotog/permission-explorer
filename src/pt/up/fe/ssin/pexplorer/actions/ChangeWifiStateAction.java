@@ -1,0 +1,39 @@
+package pt.up.fe.ssin.pexplorer.actions;
+
+import pt.up.fe.ssin.pexplorer.R;
+import pt.up.fe.ssin.pexplorer.app.PermissionAction;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.wifi.WifiManager;
+
+public class ChangeWifiStateAction extends PermissionAction {
+	
+	public ChangeWifiStateAction() {
+		super(R.string.wifi_state_label, R.string.wifi_state_desc,
+				PermissionAction.WARN);
+	}
+	
+	@Override
+	protected void doAction(final Context context) {
+		WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+		String message = new String();
+		
+		if(wifi.isWifiEnabled()){
+			wifi.setWifiEnabled(false);
+			message = "Wifi was shutdown!";
+		}
+		else{
+			wifi.setWifiEnabled(true);
+			message = "Wifi was activated!";
+		}
+		
+		new AlertDialog.Builder(context)
+        .setTitle(R.string.wifi_state_desc)
+        .setMessage(message)
+        .setCancelable(true)
+        .setPositiveButton(R.string.continue_,new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {}
+        }).show();	
+	}
+}
