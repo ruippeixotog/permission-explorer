@@ -43,6 +43,12 @@
 	
 	<string name="write_external_storage_label">Get a picture from SDCard</string>
 	<string name="write_external_storage_desc">This action will access the picutres in your SDCARD.</string>
+	 
+	<string name="vibrate_action_label">Make Phone Vibrate</string>
 	
+	<string name="take_picture_label">Take Picture</string>
+	
+	<string name="read_calendar_label">Read Calendar</string>
+	<string name="write_calendar_label">Write Calendar</string>
 	
 </resources>

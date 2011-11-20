@@ -10,9 +10,13 @@ import pt.up.fe.ssin.pexplorer.actions.AccessNetworkStateAction;
 import pt.up.fe.ssin.pexplorer.actions.ChangeWifiStateAction;
 import pt.up.fe.ssin.pexplorer.actions.InternetAccessAction;
 import pt.up.fe.ssin.pexplorer.actions.PhoneCallAction;
+import pt.up.fe.ssin.pexplorer.actions.ReadCalendarAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadContactsAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadPhoneStateAction;
 import pt.up.fe.ssin.pexplorer.actions.SendTestSmsAction;
+import pt.up.fe.ssin.pexplorer.actions.TakePicutreAction;
+import pt.up.fe.ssin.pexplorer.actions.VibrateAction;
+import pt.up.fe.ssin.pexplorer.actions.WriteCalendarAction;
 import pt.up.fe.ssin.pexplorer.actions.WriteExternalStorageAction;
 import pt.up.fe.ssin.pexplorer.actions.WriteSettingsAction;
 
@@ -50,6 +54,14 @@ public class ActionRegistry {
 				new WriteSettingsAction());
 		getInstance().addAction("android.permission.WRITE_EXTERNAL_STORAGE", 
 				new WriteExternalStorageAction());
+		getInstance().addAction("android.permission.VIBRATE", 
+				new VibrateAction());
+		getInstance().addAction("android.permission.CAMERA", 
+				new TakePicutreAction());
+		getInstance().addAction("android.permission.READ_CALENDAR", 
+				new ReadCalendarAction());
+		getInstance().addAction("android.permission.WRITE_CALENDAR", 
+				new WriteCalendarAction());
 	}
 
 	private ActionRegistry() {

@@ -1,7 +1,5 @@
 package pt.up.fe.ssin.pexplorer.actions;
 
-import java.util.Random;
-
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.app.PermissionAction;
 import android.app.AlertDialog;
@@ -17,9 +15,7 @@ public class WriteSettingsAction extends PermissionAction {
 	
 	@Override
 	protected void doAction(final Context context) {
-		Random rand = new Random();
-		int SysBackLightValue = rand.nextInt((255 - 1) + 1);  
-		android.provider.Settings.System.putInt(context.getContentResolver(),android.provider.Settings.System.SCREEN_BRIGHTNESS,SysBackLightValue);
+		android.provider.Settings.System.putInt(context.getContentResolver(),android.provider.Settings.System.SCREEN_BRIGHTNESS,0);
 		
 		new AlertDialog.Builder(context)
         .setTitle(R.string.wifi_state_label)
