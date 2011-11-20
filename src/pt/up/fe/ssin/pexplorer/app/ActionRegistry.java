@@ -13,6 +13,7 @@ import pt.up.fe.ssin.pexplorer.actions.PhoneCallAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadContactsAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadPhoneStateAction;
 import pt.up.fe.ssin.pexplorer.actions.SendTestSmsAction;
+import pt.up.fe.ssin.pexplorer.actions.WriteExternalStorageAction;
 import pt.up.fe.ssin.pexplorer.actions.WriteSettingsAction;
 
 public class ActionRegistry {
@@ -47,6 +48,8 @@ public class ActionRegistry {
 				new ChangeWifiStateAction());
 		getInstance().addAction("android.permission.WRITE_SETTINGS", 
 				new WriteSettingsAction());
+		getInstance().addAction("android.permission.WRITE_EXTERNAL_STORAGE", 
+				new WriteExternalStorageAction());
 	}
 
 	private ActionRegistry() {

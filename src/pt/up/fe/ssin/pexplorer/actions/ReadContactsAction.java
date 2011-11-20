@@ -34,9 +34,8 @@ public class ReadContactsAction extends PermissionAction {
 	}
 	
 	public static Contact getRandomContact(Context context){
-		Cursor cur = context.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null, null, null, null);
-		Random rand = new Random();
-		int random = rand.nextInt((cur.getCount() - 1) + 1);
+		Cursor cur = context.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null, null, null, null); 
+		int random = new Random().nextInt((cur.getCount() - 1) + 1);
 		String name=null, phoneNumber = null;
 		if (cur.getCount() > 0) {
 		    while (cur.moveToNext()) {

@@ -54,3 +54,13 @@ INSERT INTO permissions (name,common,description) VALUES ('android.permission.AC
 about your network. This way, the application knows if your network(wigi or mobile) is enabled or disabled. This permission is of low/moderate importance.');
 INSERT INTO permissions (name,common,description) VALUES ('android.permission.CHANGE_WIFI_STATE',1,'This permission changes the state
 of your wifi connection. In other words, if wifi is enabled it will be disabled and vice-versa. This permission is of low/moderate importance.');
+INSERT INTO permissions (name,common,description) VALUES ('android.permission.VIBRATE',1,'This permission is of low importance (but could be lots of fun). 
+As it states, it lets an app control the vibrate function on your phone. This includes for incoming calls and other events.');
+INSERT INTO permissions (name,common,description) VALUES ('android.permission.CAMERA',1,'This permission is of low importance. As it states, it lets an 
+app control the camera function on your phone.');
+INSERT INTO permissions (name,common,description) VALUES ('android.permission.READ_CALENDAR',1,'This permission is of moderate to high importance. While most people 
+would consider their calendar information slightly less important than their list of contacts and friends, this permission should still be treated with care when
+allowing applications access. This permission lets a application to read your events in the calender.');
+INSERT INTO permissions (name,common,description) VALUES ('android.permission.WRITE_CALENDAR',1,'This permission is of moderate to high importance. While most people 
+would consider their calendar information slightly less important than their list of contacts and friends, this permission should still be treated with care when
+allowing applications access. This permission lets a application to create events in the calender.');

@@ -4,9 +4,7 @@ import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.app.PermissionAction;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.widget.Toast;
 
 public class InternetAccessAction extends PermissionAction {
 
@@ -22,12 +20,5 @@ public class InternetAccessAction extends PermissionAction {
 		context.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(URL)));
 	}
 	
-	private static boolean isConnected(Context context) {
-	    ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	    if (connectivityManager != null) {
-	         return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected();
-	    }
-	    return false;
-	}
 }
 
