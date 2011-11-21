@@ -22,7 +22,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
 public class FilterConfigActivity extends ListActivity {
@@ -117,20 +116,23 @@ public class FilterConfigActivity extends ListActivity {
 		tabHost = (TabHost) findViewById(R.id.tabhost);
 		tabHost.setup();
 
-		TabSpec spec1 = tabHost.newTabSpec(TAB_SPEC_GROUP);
-		spec1.setContent(android.R.id.list);
-		spec1.setIndicator(getString(R.string.tab_filter_groups));
-		tabHost.addTab(spec1);
+		tabHost.addTab(tabHost
+				.newTabSpec(TAB_SPEC_GROUP)
+				.setContent(android.R.id.list)
+				.setIndicator(getString(R.string.tab_filter_groups),
+						getResources().getDrawable(R.drawable.ic_tab_group)));
 
-		TabSpec spec2 = tabHost.newTabSpec(TAB_SPEC_LEVEL);
-		spec2.setContent(R.id.filter_level);
-		spec2.setIndicator(getString(R.string.tab_filter_level));
-		tabHost.addTab(spec2);
+		tabHost.addTab(tabHost
+				.newTabSpec(TAB_SPEC_LEVEL)
+				.setContent(R.id.filter_level)
+				.setIndicator(getString(R.string.tab_filter_level),
+						getResources().getDrawable(R.drawable.ic_tab_level)));
 
-		TabSpec spec3 = tabHost.newTabSpec(TAB_SPEC_RELEVANCE);
-		spec3.setContent(R.id.filter_relevance);
-		spec3.setIndicator(getString(R.string.tab_filter_relevance));
-		tabHost.addTab(spec3);
+		tabHost.addTab(tabHost
+				.newTabSpec(TAB_SPEC_RELEVANCE)
+				.setContent(R.id.filter_relevance)
+				.setIndicator(getString(R.string.tab_filter_relevance),
+						getResources().getDrawable(R.drawable.ic_tab_relevance)));
 	}
 
 	private void setSelectedGroups() {

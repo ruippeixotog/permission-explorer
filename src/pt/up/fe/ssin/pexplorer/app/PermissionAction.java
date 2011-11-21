@@ -42,7 +42,8 @@ public abstract class PermissionAction {
 	protected abstract void doAction(Context context);
 
 	private Dialog getWarnDialog(final Context context) {
-		if (warningDialog == null) {
+		if (warningDialog == null
+				|| !warningDialog.getContext().equals(context)) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(context);
 			builder.setMessage(String.format(
 					context.getString(R.string.dialog_msg_action_warn),

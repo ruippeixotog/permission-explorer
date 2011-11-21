@@ -67,17 +67,6 @@ public class PermissionInfoActivity extends ListActivity {
 		showAllApps = prefs.getBoolean(Keys.PREFS_SHOW_ALL_APPS,
 				Keys.DEFAULT_SHOW_ALL_APPS);
 
-		/*Bundle b = perm.metaData;
-		try {
-			PackageInfo info = catalog.getPackageManager().getPackageInfo(perm.packageName, 0);
-			info.
-			
-		} catch (NameNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Log.e("bundle meta", b == null ? "NULL" : b.toString());*/
-
 		drawActivity();
 	}
 
@@ -95,13 +84,17 @@ public class PermissionInfoActivity extends ListActivity {
 		tabHost = (TabHost) findViewById(R.id.tabhost);
 		tabHost.setup();
 
-		tabHost.addTab(tabHost.newTabSpec(TAB_SPEC_INFO)
+		tabHost.addTab(tabHost
+				.newTabSpec(TAB_SPEC_INFO)
 				.setContent(R.id.detailed_info)
-				.setIndicator(getString(R.string.tab_detailed_info)));
+				.setIndicator(getString(R.string.tab_detailed_info),
+						getResources().getDrawable(R.drawable.ic_tab_info)));
 
-		tabHost.addTab(tabHost.newTabSpec(TAB_SPEC_ACTIONS)
+		tabHost.addTab(tabHost
+				.newTabSpec(TAB_SPEC_ACTIONS)
 				.setContent(R.id.actions_list)
-				.setIndicator(getString(R.string.tab_actions_list)));
+				.setIndicator(getString(R.string.tab_actions_list),
+						getResources().getDrawable(R.drawable.ic_tab_examples)));
 
 		tabHost.addTab(tabHost
 				.newTabSpec(TAB_SPEC_APPS)
