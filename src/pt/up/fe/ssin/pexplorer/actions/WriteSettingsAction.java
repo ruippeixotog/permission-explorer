@@ -1,10 +1,15 @@
 package pt.up.fe.ssin.pexplorer.actions;
 
+import java.util.Locale;
+
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.app.PermissionAction;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
+import android.util.Log;
 
 public class WriteSettingsAction extends PermissionAction {
 	
@@ -15,10 +20,15 @@ public class WriteSettingsAction extends PermissionAction {
 	
 	@Override
 	protected void doAction(final Context context) {
-		android.provider.Settings.System.putInt(context.getContentResolver(),android.provider.Settings.System.SCREEN_BRIGHTNESS,0);
-		
+
+		 Resources res = context.getResources();
+		 DisplayMetrics dm = res.getDisplayMetrics();
+		 android.content.res.Configuration conf = res.getConfiguration();
+		 conf.locale = new Locale(Locale.FRANCE.getLanguage().toLowerCase());
+		 res.updateConfiguration(conf, dm);
+        
 		new AlertDialog.Builder(context)
-        .setTitle(R.string.wifi_state_label)
+        .setTitle(R.string.write_settings_label)
         .setMessage("Screen brightness has changed!")
         .setCancelable(true)
         .setPositiveButton(R.string.continue_,new DialogInterface.OnClickListener() {
