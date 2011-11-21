@@ -38,6 +38,7 @@ public class PermissionInfoActivity extends ListActivity {
 	private TabHost tabHost;
 	private ApplicationListAdapter adapter;
 	private boolean showAllApps = false;
+	private boolean redrawMenuOption = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -148,6 +149,11 @@ public class PermissionInfoActivity extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.info_apps, menu);
+		if (showAllApps) {
+			menu.getItem(0).setTitle(R.string.show_only_downloaded_apps);
+			menu.getItem(0).setIcon(R.drawable.ic_menu_show_downloaded_apps);
+		}
+
 		return true;
 	}
 
@@ -155,10 +161,16 @@ public class PermissionInfoActivity extends ListActivity {
 		super.onPrepareOptionsMenu(menu);
 		if (!tabHost.getCurrentTabTag().equals(TAB_SPEC_APPS))
 			return false;
-
-		menu.getItem(0).setTitle(
-				showAllApps ? R.string.show_only_downloaded_apps
-						: R.string.show_all_apps);
+		
+		if (redrawMenuOption) {
+			menu.getItem(0).setTitle(
+					showAllApps ? R.string.show_only_downloaded_apps
+							: R.string.show_all_apps);
+			menu.getItem(0).setIcon(
+					showAllApps ? R.drawable.ic_menu_show_downloaded_apps
+							: R.drawable.ic_menu_show_all_apps);
+			redrawMenuOption = false;
+		}
 		return true;
 	}
 
@@ -173,6 +185,8 @@ public class PermissionInfoActivity extends ListActivity {
 					Keys.PREFS_FILE, MODE_PRIVATE).edit();
 			prefs.putBoolean(Keys.PREFS_SHOW_ALL_APPS, showAllApps);
 			prefs.commit();
+			
+			redrawMenuOption = true;
 
 			adapter = new ApplicationListAdapter(this,
 					showAllApps ? permittedApps : permittedDownloadedApps);

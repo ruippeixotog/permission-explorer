@@ -3,6 +3,7 @@
 
 	<item
 		android:id="@+id/toggle_show"
+		android:icon="@drawable/ic_menu_show_all_apps"
 		android:title="@string/show_all_apps"/>
 
 </menu>

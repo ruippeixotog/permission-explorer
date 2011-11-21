@@ -2,11 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
 	<item
-		android:id="@+id/select_all"
-		android:title="@string/select_all"/>
+		android:id="@+id/check_all"
+		android:icon="@drawable/ic_menu_check_all"
+		android:title="@string/check_all"/>
 
 	<item
-		android:id="@+id/deselect_all"
-		android:title="@string/deselect_all"/>
+		android:id="@+id/uncheck_all"
+		android:icon="@drawable/ic_menu_uncheck_all"
+		android:title="@string/uncheck_all"/>
 
 </menu>

@@ -170,13 +170,13 @@ public class FilterConfigActivity extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 
-		case R.id.select_all: {
+		case R.id.check_all: {
 			for (int i = 0; i < getListAdapter().getCount(); i++)
 				getListView().setItemChecked(i, true);
 			return true;
 		}
 
-		case R.id.deselect_all: {
+		case R.id.uncheck_all: {
 			for (int i = 0; i < getListAdapter().getCount(); i++)
 				getListView().setItemChecked(i, false);
 			return true;

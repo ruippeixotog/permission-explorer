@@ -52,8 +52,8 @@
 	<string name="permission_group">Permission group</string>
 	<string name="description">Description</string>
 	<string name="name">Name</string>
-	<string name="select_all">Select all</string>
-	<string name="deselect_all">Deselect all</string>
+	<string name="check_all">Check all</string>
+	<string name="uncheck_all">Uncheck all</string>
 	<string name="show_all_apps">Show all apps</string>
 	<string name="show_only_downloaded_apps">Show only downloaded apps</string>
 
