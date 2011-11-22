@@ -8,6 +8,7 @@ import java.util.Map;
 import pt.up.fe.ssin.pexplorer.actions.AccessFineLocationAction;
 import pt.up.fe.ssin.pexplorer.actions.AccessNetworkStateAction;
 import pt.up.fe.ssin.pexplorer.actions.ChangeWifiStateAction;
+import pt.up.fe.ssin.pexplorer.actions.GetAccountsAction;
 import pt.up.fe.ssin.pexplorer.actions.InternetAccessAction;
 import pt.up.fe.ssin.pexplorer.actions.PhoneCallAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadCalendarAction;
@@ -65,6 +66,8 @@ public class ActionRegistry {
 				new WriteCalendarAction());
 		getInstance().addAction("android.permission.GET_TASKS", 
 				new RetrieveRunningTasksAction());
+		getInstance().addAction("android.permission.GET_ACCOUNTS", 
+				new GetAccountsAction());
 	}
 
 	private ActionRegistry() {
