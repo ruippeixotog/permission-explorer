@@ -19,13 +19,15 @@
 	<uses-permission android:name="android.permission.VIBRATE"/>
 	<uses-permission android:name="android.permission.READ_CALENDAR"/>
 	<uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
+	
 	
 	<application
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name" >
 		<activity
 			android:label="@string/app_name"
-			android:name=".app.PermissionExplorerActivity" >
+			android:name=".app.PermissionExplorerActivity" android:configChanges="orientation" >
 			<intent-filter >
 				<action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +37,8 @@
 		<activity android:name=".app.PermissionInfoActivity" >
 		</activity>
 		<activity android:name=".app.FilterConfigActivity" >
+		</activity>
+		<activity android:name=".app.TakePictureActivity" android:configChanges="orientation">
 		</activity>
 		<provider android:name=".data.PermissionExplorerContentProvider"
          android:authorities="pt.up.fe.ssin.pexplorer.data.permissionexplorercontentprovider"/>   

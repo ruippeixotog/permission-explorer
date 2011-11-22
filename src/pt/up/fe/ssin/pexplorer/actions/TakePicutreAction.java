@@ -2,9 +2,9 @@ package pt.up.fe.ssin.pexplorer.actions;
 
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.app.PermissionAction;
+import pt.up.fe.ssin.pexplorer.app.TakePictureActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.MediaStore;
 
 public class TakePicutreAction extends PermissionAction {
 	
@@ -15,7 +15,7 @@ public class TakePicutreAction extends PermissionAction {
 	
 	@Override
 	protected void doAction(final Context context) {
-		final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		final Intent intent = new Intent(context,TakePictureActivity.class);
 		context.startActivity(intent);
 	}	
 }
