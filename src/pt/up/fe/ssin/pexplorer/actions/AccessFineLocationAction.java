@@ -23,7 +23,7 @@ public class AccessFineLocationAction extends PermissionAction {
 	
 	public AccessFineLocationAction() {
 		super(R.string.access_fine_location_label, R.string.access_fine_location_desc,
-				PermissionAction.WARN);
+				PermissionAction.DO_NOTHING);
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class AccessNetworkStateAction extends PermissionAction {
 	
 	public AccessNetworkStateAction() {
 		super(R.string.network_state_label, R.string.network_state_desc,
-				PermissionAction.WARN);
+				PermissionAction.DO_NOTHING);
 	}
 	
 	@Override

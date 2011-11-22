@@ -11,7 +11,7 @@ public class ChangeWifiStateAction extends PermissionAction {
 	
 	public ChangeWifiStateAction() {
 		super(R.string.wifi_state_label, R.string.wifi_state_desc,
-				PermissionAction.WARN);
+				PermissionAction.DO_NOTHING);
 	}
 	
 	@Override

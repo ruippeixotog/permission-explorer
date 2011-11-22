@@ -16,7 +16,7 @@ public class ReadContactsAction extends PermissionAction {
 
 	public ReadContactsAction() {
 		super(R.string.read_contact_label, R.string.read_contact_desc,
-				PermissionAction.WARN);
+				PermissionAction.DO_NOTHING);
 	}
 
 	@Override
