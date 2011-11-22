@@ -1,15 +1,12 @@
 package pt.up.fe.ssin.pexplorer.actions;
 
-import java.util.Locale;
-
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.app.PermissionAction;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
-import android.util.DisplayMetrics;
-import android.util.Log;
+import android.content.Intent;
+import android.provider.Settings;
 
 public class WriteSettingsAction extends PermissionAction {
 	
@@ -21,15 +18,15 @@ public class WriteSettingsAction extends PermissionAction {
 	@Override
 	protected void doAction(final Context context) {
 
-		 Resources res = context.getResources();
-		 DisplayMetrics dm = res.getDisplayMetrics();
-		 android.content.res.Configuration conf = res.getConfiguration();
-		 conf.locale = new Locale(Locale.FRANCE.getLanguage().toLowerCase());
-		 res.updateConfiguration(conf, dm);
+		boolean isEnabled = Settings.System.getInt(context.getContentResolver(),Settings.System.AIRPLANE_MODE_ON, 0) == 1;
+		Settings.System.putInt(context.getContentResolver(),Settings.System.AIRPLANE_MODE_ON, isEnabled ? 0 : 1);
+		Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+		intent.putExtra("state", !isEnabled);
+		context.sendBroadcast(intent);
         
 		new AlertDialog.Builder(context)
         .setTitle(R.string.write_settings_label)
-        .setMessage("Screen brightness has changed!")
+        .setMessage("Airplane mode has changed!")
         .setCancelable(true)
         .setPositiveButton(R.string.continue_,new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {}
