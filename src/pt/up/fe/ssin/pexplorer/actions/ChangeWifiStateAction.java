@@ -10,7 +10,7 @@ import android.net.wifi.WifiManager;
 public class ChangeWifiStateAction extends PermissionAction {
 	
 	public ChangeWifiStateAction() {
-		super(R.string.wifi_state_label, R.string.wifi_state_desc,
+		super(R.string.wifi_state_label, R.string.write_calendar_label,
 				PermissionAction.DO_NOTHING);
 	}
 	
@@ -29,7 +29,7 @@ public class ChangeWifiStateAction extends PermissionAction {
 		}
 		
 		new AlertDialog.Builder(context)
-        .setTitle(R.string.wifi_state_desc)
+        .setTitle(R.string.wifi_state_label)
         .setMessage(message)
         .setCancelable(true)
         .setPositiveButton(R.string.continue_,new DialogInterface.OnClickListener() {

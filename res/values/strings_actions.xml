@@ -8,35 +8,30 @@
 	<string name="send_test_sms_dialog_label">Choose the mobile number to receive the message.</string>
 	<string name="send_test_sms_sms_text">This SMS was sent from PermissionExplorer.</string>
 	
-	<string name="call_phone_label">Call a phone number</string>
+	<string name="call_phone_label">Make a Call</string>
 	<string name="call">Call</string>
 	<string name="call_phone_desc">This action will make a call to a contact chosen by the user. Operator charges may apply.</string>
 	<string name="call_phone_title">Call Phone</string>
-	<string name="call_phone_dialog_label">Choose the mobile number to receive the call.</string>
+	<string name="call_phone_dialog_label">Choose the mobile number to make the call.</string>
 	
 	<string name="read_contact_label">Get Information about a Contact</string>
 	<string name="read_contact">Read a Contact</string>
-	<string name="read_contact_desc">This action will access the information of random contact.</string>
 	<string name="read_contact_title">Read Contact Information</string>
 	
 	<string name="read_phone_state_label">Phone State Information</string>
 	<string name="read_phone_state">Read Phone Sate Information</string>
-	<string name="read_phone_state_desc">This action will access the information about you phone.</string>
+	<string name="read_phone_state_desc">This action will access confidential information about your phone.</string>
 	<string name="read_phone_state_title">Read Contact Information</string>
 	
-	<string name="access_fine_location_label">Current Location</string>
-	<string name="access_fine_location">Access Fine Location</string>
-	<string name="access_fine_location_desc">This action will access the information about you current location.</string>
+	<string name="access_fine_location_label">Check Current Location</string>
 	<string name="access_fine_location_title">Access Fine Location</string>
 	
 	<string name="internet_access_label">Internet Access</string>
-	<string name="internet_access_desc">This action will user you internet to access a random page from the web.</string>
+	<string name="internet_access_desc">This action will use you internet to access a web page.</string>
 	
 	<string name="network_state_label">Wifi/3G Access</string>
-	<string name="network_state_desc">This action will display the current state of your internet application.</string>
 	
 	<string name="wifi_state_label">Change Wifi State</string>
-	<string name="wifi_state_desc">This action will change the current state of your wifi.</string>
 	
 	<string name="write_settings_label">Change Airplane Mode State</string>
 	<string name="write_settings_desc">This action will change the airplane mode state! All your network 
@@ -46,10 +41,9 @@
 	<string name="write_external_storage_desc">This action will access the picutres in your SDCARD.</string>
 	 
 	<string name="vibrate_action_label">Make Phone Vibrate</string>
-	
 	<string name="take_picture_label">Take Picture</string>
-	
 	<string name="read_calendar_label">Read Calendar</string>
 	<string name="write_calendar_label">Write Calendar</string>
+	<string name="retrive_running_tasks_label"> Current Running Tasks </string>
 	
 </resources>

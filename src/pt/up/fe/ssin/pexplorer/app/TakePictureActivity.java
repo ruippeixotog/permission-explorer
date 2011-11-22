@@ -36,7 +36,7 @@ public class TakePictureActivity extends Activity implements SurfaceHolder.Callb
   
         surfHolder = surfView.getHolder();  
         surfHolder.addCallback(this);  
-        surfHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);  
+        surfHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }  
   
     @Override  
@@ -50,13 +50,16 @@ public class TakePictureActivity extends Activity implements SurfaceHolder.Callb
          {  
              @Override  
              public void onPictureTaken(byte[] data, Camera camera)  
-             {  
-                 bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
-                 imageView.setImageBitmap(bmp);  
+             {
+            	 if(data != null){
+            		 bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                 	 imageView.setImageBitmap(bmp);
+            	 }
              }  
          };  
   
-         camera.takePicture(null, null, mCall);  
+         if(bmp == null)
+        	 camera.takePicture(null, null, mCall);  
     }  
   
     @Override  

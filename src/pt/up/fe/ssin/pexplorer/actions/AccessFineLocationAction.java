@@ -22,7 +22,7 @@ public class AccessFineLocationAction extends PermissionAction {
     public LocationResult locationResult;
 	
 	public AccessFineLocationAction() {
-		super(R.string.access_fine_location_label, R.string.access_fine_location_desc,
+		super(R.string.access_fine_location_label, R.string.access_fine_location_label,
 				PermissionAction.DO_NOTHING);
 	}
 

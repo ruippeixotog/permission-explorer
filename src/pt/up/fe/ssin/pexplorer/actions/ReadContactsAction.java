@@ -15,7 +15,7 @@ import android.provider.ContactsContract;
 public class ReadContactsAction extends PermissionAction {
 
 	public ReadContactsAction() {
-		super(R.string.read_contact_label, R.string.read_contact_desc,
+		super(R.string.read_contact_label, R.string.read_calendar_label,
 				PermissionAction.DO_NOTHING);
 	}
 

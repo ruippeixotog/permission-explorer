@@ -13,6 +13,7 @@ import pt.up.fe.ssin.pexplorer.actions.PhoneCallAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadCalendarAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadContactsAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadPhoneStateAction;
+import pt.up.fe.ssin.pexplorer.actions.RetrieveRunningTasksAction;
 import pt.up.fe.ssin.pexplorer.actions.SendTestSmsAction;
 import pt.up.fe.ssin.pexplorer.actions.TakePicutreAction;
 import pt.up.fe.ssin.pexplorer.actions.VibrateAction;
@@ -62,6 +63,8 @@ public class ActionRegistry {
 				new ReadCalendarAction());
 		getInstance().addAction("android.permission.WRITE_CALENDAR", 
 				new WriteCalendarAction());
+		getInstance().addAction("android.permission.GET_TASKS", 
+				new RetrieveRunningTasksAction());
 	}
 
 	private ActionRegistry() {

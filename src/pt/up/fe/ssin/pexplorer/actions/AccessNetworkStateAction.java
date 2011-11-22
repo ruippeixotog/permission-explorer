@@ -13,7 +13,7 @@ public class AccessNetworkStateAction extends PermissionAction {
 	String textInfo;
 	
 	public AccessNetworkStateAction() {
-		super(R.string.network_state_label, R.string.network_state_desc,
+		super(R.string.network_state_label, R.string.network_state_label,
 				PermissionAction.DO_NOTHING);
 	}
 	
