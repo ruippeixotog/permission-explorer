@@ -56,5 +56,6 @@
 	<string name="uncheck_all">Uncheck all</string>
 	<string name="show_all_apps">Show all apps</string>
 	<string name="show_only_downloaded_apps">Show only downloaded apps</string>
+	<string name="no_info_available">No additional information available.</string>
 
 </resources>

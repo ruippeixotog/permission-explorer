@@ -4,6 +4,7 @@ import java.util.List;
 
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.data.PermissionCatalog;
+import pt.up.fe.ssin.pexplorer.data.PermissionDBOperations;
 import pt.up.fe.ssin.pexplorer.utils.ApplicationDetailsHelper;
 import pt.up.fe.ssin.pexplorer.utils.PermissionUtils;
 import android.app.ListActivity;
@@ -64,6 +65,12 @@ public class PermissionInfoActivity extends ListActivity {
 		permittedApps = catalog.getApplications(perm);
 		permittedDownloadedApps = catalog.filterApplications(permittedApps,
 				true);
+		extendedInfo = PermissionDBOperations.getPermissionDescription(this,
+				perm.name);
+
+		if ((permDescription == null || permDescription.equals(""))
+				&& (extendedInfo == null || extendedInfo.equals("")))
+			permDescription = getString(R.string.no_info_available);
 
 		showAllApps = prefs.getBoolean(Keys.PREFS_SHOW_ALL_APPS,
 				Keys.DEFAULT_SHOW_ALL_APPS);
@@ -161,7 +168,7 @@ public class PermissionInfoActivity extends ListActivity {
 		super.onPrepareOptionsMenu(menu);
 		if (!tabHost.getCurrentTabTag().equals(TAB_SPEC_APPS))
 			return false;
-		
+
 		if (redrawMenuOption) {
 			menu.getItem(0).setTitle(
 					showAllApps ? R.string.show_only_downloaded_apps
@@ -185,7 +192,7 @@ public class PermissionInfoActivity extends ListActivity {
 					Keys.PREFS_FILE, MODE_PRIVATE).edit();
 			prefs.putBoolean(Keys.PREFS_SHOW_ALL_APPS, showAllApps);
 			prefs.commit();
-			
+
 			redrawMenuOption = true;
 
 			adapter = new ApplicationListAdapter(this,
