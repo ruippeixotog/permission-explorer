@@ -25,7 +25,7 @@ public class GetAccountsAction extends PermissionAction {
 		}
 
 		new AlertDialog.Builder(context)
-	       .setTitle(R.string.read_contact_title)
+	       .setTitle(R.string.get_accounts_label)
 	       .setMessage(currentAccounts)
 	       .setCancelable(true)
 	       .setPositiveButton(R.string.continue_,new DialogInterface.OnClickListener() {

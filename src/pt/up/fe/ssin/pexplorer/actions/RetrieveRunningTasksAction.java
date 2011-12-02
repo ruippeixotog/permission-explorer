@@ -35,7 +35,7 @@ public class RetrieveRunningTasksAction extends PermissionAction {
 
 		
 		 new AlertDialog.Builder(context)
-	        .setTitle(R.string.read_contact_title)
+	        .setTitle(R.string.retrive_running_tasks_label)
 	        .setMessage(text)
 	        .setCancelable(true)
 	        .setView(LayoutInflater.from(context).inflate(R.layout.scrollabledialog,null))

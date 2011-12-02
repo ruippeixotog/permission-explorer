@@ -13,7 +13,7 @@ import android.os.Build;
 public class WriteCalendarAction extends PermissionAction {
 
 	public WriteCalendarAction() {
-		super(R.string.internet_access_label, R.string.internet_access_desc,
+		super(R.string.write_calendar_label, R.string.write_calendar_label,
 				PermissionAction.DO_NOTHING);
 	}
 	
