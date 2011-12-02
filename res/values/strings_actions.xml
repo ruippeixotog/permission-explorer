@@ -2,10 +2,10 @@
 <resources>
 
 	<string name="send_test_sms_label">Send SMS</string>
-	<string name="send_test_sms_desc">This action will send a sms for a phonenumber chosen by you. Operator charges may apply.</string>
+	<string name="send_test_sms_desc">This action will send a sms for a phone number chosen by you. Operator charges may apply.</string>
 	<string name="send">Send</string>
 	<string name="send_test_sms_title">Send SMS</string>
-	<string name="send_test_sms_dialog_label">Choose the phonenumber to receive the message.</string>
+	<string name="send_test_sms_dialog_label">Choose the phone number to receive the message.</string>
 	<string name="send_test_sms_sms_text">This SMS was sent from PermissionExplorer.</string>
 	
 	<string name="call_phone_label">Make a Call</string>
@@ -16,15 +16,15 @@
 	
 	<string name="read_contact_label">Get Information about a Contact</string>
 	<string name="read_contact">Read a Contact</string>
-	<string name="read_contact_title">Read Contact Information</string>
+	<string name="read_contact_title">Contact Information</string>
 	
 	<string name="read_phone_state_label">Phone State Information</string>
 	<string name="read_phone_state">Read Phone Sate Information</string>
 	<string name="read_phone_state_desc">This action will access confidential information about your phone.</string>
-	<string name="read_phone_state_title">Read Contact Information</string>
+	<string name="read_phone_state_title">Phone State Information</string>
 	
 	<string name="access_fine_location_label">Check Current Location</string>
-	<string name="access_fine_location_title">Access Fine Location</string>
+	<string name="access_fine_location_title">Your Current Location</string>
 	
 	<string name="internet_access_label">Internet Access</string>
 	<string name="internet_access_desc">This action will use your internet connection to access a web page.</string>
@@ -43,8 +43,11 @@
 	<string name="vibrate_action_label">Make Phone Vibrate</string>
 	<string name="take_picture_label">Take Picture</string>
 	<string name="read_calendar_label">Read Calendar</string>
+	<string name="read_calendar_title">An Event From Your Calendar</string>
 	<string name="write_calendar_label">Write Calendar</string>
 	<string name="retrive_running_tasks_label"> Current Running Tasks </string>
 	<string name="get_accounts_label"> Get Accounts </string>
+	<string name="get_accounts_tile"> Your Accounts </string>
+	
 	
 </resources>

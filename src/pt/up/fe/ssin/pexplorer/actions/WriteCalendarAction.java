@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.widget.Toast;
 
 public class WriteCalendarAction extends PermissionAction {
 
@@ -37,6 +38,7 @@ public class WriteCalendarAction extends PermissionAction {
 		}
 		
 		createEvent(context,id,contentProvider);
+		Toast.makeText(context,"New event was created successfully",Toast.LENGTH_SHORT).show();
 	}
 	
 	private void createEvent(Context context, String id, String contentProvider){

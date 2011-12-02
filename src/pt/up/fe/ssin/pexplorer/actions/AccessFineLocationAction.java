@@ -31,16 +31,15 @@ public class AccessFineLocationAction extends PermissionAction {
 		  m_location_manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		  gpsEnabled = m_location_manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-		  MyLocation myLocation = new MyLocation();
-		  myLocation.getLocation(context, locationResult);
-  
 		  if(gpsEnabled){
+			  MyLocation myLocation = new MyLocation();
+			  myLocation.getLocation(context, locationResult);
 			  Toast.makeText(context,"GPS is enabled. Getting you current location",Toast.LENGTH_SHORT).show();
 			  locationResult = new LocationResult(){
 				    @Override
 				    public void gotLocation(final Location location){
 				    	new AlertDialog.Builder(context)
-				        .setTitle(R.string.read_contact_title)
+				        .setTitle(R.string.access_fine_location_title)
 				        .setMessage("Latitude\n" + location.getLatitude() +"\nLongitude\n" + location.getLongitude())
 				        .setCancelable(true)
 				        .setPositiveButton(R.string.continue_,new DialogInterface.OnClickListener() {
