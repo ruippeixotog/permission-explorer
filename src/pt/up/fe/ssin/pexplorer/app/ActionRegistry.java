@@ -14,8 +14,10 @@ import pt.up.fe.ssin.pexplorer.actions.PhoneCallAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadCalendarAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadContactsAction;
 import pt.up.fe.ssin.pexplorer.actions.ReadPhoneStateAction;
+import pt.up.fe.ssin.pexplorer.actions.RebootAction;
 import pt.up.fe.ssin.pexplorer.actions.RetrieveRunningTasksAction;
 import pt.up.fe.ssin.pexplorer.actions.SendTestSmsAction;
+import pt.up.fe.ssin.pexplorer.actions.ShellCommandAction;
 import pt.up.fe.ssin.pexplorer.actions.TakePicutreAction;
 import pt.up.fe.ssin.pexplorer.actions.VibrateAction;
 import pt.up.fe.ssin.pexplorer.actions.WriteCalendarAction;
@@ -68,6 +70,10 @@ public class ActionRegistry {
 				new RetrieveRunningTasksAction());
 		getInstance().addAction("android.permission.GET_ACCOUNTS", 
 				new GetAccountsAction());
+		getInstance().addAction("com.noshufou.android.su.provider.READ", 
+				new RebootAction(), new ShellCommandAction());
+		getInstance().addAction("com.noshufou.android.su.provider.WRITE", 
+				new RebootAction(), new ShellCommandAction());
 	}
 
 	private ActionRegistry() {

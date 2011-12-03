@@ -4,7 +4,7 @@ import java.util.List;
 
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.data.PermissionCatalog;
-import pt.up.fe.ssin.pexplorer.utils.SimpleObjectAdapter;
+import pt.up.fe.ssin.pexplorer.utils.ui.SimpleObjectAdapter;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.view.View;

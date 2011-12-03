@@ -6,7 +6,7 @@ import java.util.List;
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.data.PermissionCatalog;
 import pt.up.fe.ssin.pexplorer.utils.PermissionUtils;
-import pt.up.fe.ssin.pexplorer.utils.SimpleObjectAdapter;
+import pt.up.fe.ssin.pexplorer.utils.ui.SimpleObjectAdapter;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;

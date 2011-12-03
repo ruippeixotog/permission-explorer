@@ -7,39 +7,29 @@
 	<string name="send_test_sms_title">Send SMS</string>
 	<string name="send_test_sms_dialog_label">Choose the phone number to receive the message.</string>
 	<string name="send_test_sms_sms_text">This SMS was sent from PermissionExplorer.</string>
-	
 	<string name="call_phone_label">Make a Call</string>
 	<string name="call">Call</string>
 	<string name="call_phone_desc">This action will make a call to a contact chosen by you. Operator charges may apply.</string>
 	<string name="call_phone_title">Call Phone</string>
 	<string name="call_phone_dialog_label">Choose the mobile number to make the call.</string>
-	
 	<string name="read_contact_label">Get Information about a Contact</string>
 	<string name="read_contact">Read a Contact</string>
 	<string name="read_contact_title">Contact Information</string>
-	
 	<string name="read_phone_state_label">Phone State Information</string>
 	<string name="read_phone_state">Read Phone Sate Information</string>
 	<string name="read_phone_state_desc">This action will access confidential information about your phone.</string>
 	<string name="read_phone_state_title">Phone State Information</string>
-	
 	<string name="access_fine_location_label">Check Current Location</string>
 	<string name="access_fine_location_title">Your Current Location</string>
-	
 	<string name="internet_access_label">Internet Access</string>
 	<string name="internet_access_desc">This action will use your internet connection to access a web page.</string>
-	
 	<string name="network_state_label">Wifi/3G Access</string>
-	
 	<string name="wifi_state_label">Change Wifi State</string>
-	
 	<string name="write_settings_label">Change Airplane Mode State</string>
 	<string name="write_settings_desc">This action will change the airplane mode state! All your network 
 	connections will be shutdown.</string>
-	
 	<string name="write_external_storage_label">Get a picture from SDCard</string>
 	<string name="write_external_storage_desc">This action will access the pictures in your SDCARD.</string>
-	 
 	<string name="vibrate_action_label">Make Phone Vibrate</string>
 	<string name="take_picture_label">Take Picture</string>
 	<string name="read_calendar_label">Read Calendar</string>
@@ -48,6 +38,13 @@
 	<string name="retrive_running_tasks_label"> Current Running Tasks </string>
 	<string name="get_accounts_label"> Get Accounts </string>
 	<string name="get_accounts_tile"> Your Accounts </string>
-	
-	
+	<string name="reboot_label">Reboot device</string>
+	<string name="reboot_desc">This action will make your device reboot. Make sure to save all your work before continuing.</string>
+	<string name="no_root">It appears that your phone isn\'t rooted. This action requires a rooted phone.</string>
+	<string name="shell_command_label">Execute shell command</string>
+	<string name="shell_command_desc">This action will prompt you to write a shell command to be executed as root. This can be VERY dangerous. Don\'t do this unless you know what you\'re doing.</string>
+	<string name="shell_command_output">Command output</string>
+	<string name="shell_command_input_msg">Input the shell command to execute:</string>
+	<string name="shell_command_input_title">Root command</string>
+
 </resources>

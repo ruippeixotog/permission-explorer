@@ -1,4 +1,4 @@
-package pt.up.fe.ssin.pexplorer.utils;
+package pt.up.fe.ssin.pexplorer.utils.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;

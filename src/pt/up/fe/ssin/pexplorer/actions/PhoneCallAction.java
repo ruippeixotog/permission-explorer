@@ -2,7 +2,7 @@ package pt.up.fe.ssin.pexplorer.actions;
 
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.app.PermissionAction;
-import pt.up.fe.ssin.pexplorer.utils.InputDialogBuilder;
+import pt.up.fe.ssin.pexplorer.utils.ui.InputDialogBuilder;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;

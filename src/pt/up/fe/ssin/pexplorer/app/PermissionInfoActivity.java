@@ -129,9 +129,17 @@ public class PermissionInfoActivity extends ListActivity {
 	}
 
 	private void drawActionsList() {
+		List<PermissionAction> actions = ActionRegistry.getInstance()
+				.getPermissionActions(perm.name);
 		ViewGroup actionsView = (ViewGroup) findViewById(R.id.actions_list);
-		for (PermissionAction action : ActionRegistry.getInstance()
-				.getPermissionActions(perm.name)) {
+
+		if (actions.isEmpty()) {
+			actionsView.addView(View.inflate(this,
+					R.layout.action_list_empty_msg, null));
+			return;
+		}
+
+		for (PermissionAction action : actions) {
 			View.inflate(this, R.layout.action_button, actionsView);
 			Button b = (Button) actionsView.getChildAt(actionsView
 					.getChildCount() - 1);

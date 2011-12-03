@@ -1,4 +1,4 @@
-package pt.up.fe.ssin.pexplorer.utils;
+package pt.up.fe.ssin.pexplorer.utils.ui;
 
 import android.text.Editable;
 import android.text.TextWatcher;

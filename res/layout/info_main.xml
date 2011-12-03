@@ -23,11 +23,7 @@
 				android:id="@+id/detailed_info"
 				layout="@layout/detailed_info" />
 
-			<LinearLayout
-				android:id="@+id/actions_list"
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:orientation="vertical" />
+			<include layout="@layout/actions_list" />
 
 			<ListView
 				android:id="@android:id/list"

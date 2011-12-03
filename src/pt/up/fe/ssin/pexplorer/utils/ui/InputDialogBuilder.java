@@ -1,4 +1,4 @@
-package pt.up.fe.ssin.pexplorer.utils;
+package pt.up.fe.ssin.pexplorer.utils.ui;
 
 import pt.up.fe.ssin.pexplorer.R;
 import android.app.AlertDialog.Builder;
@@ -16,12 +16,6 @@ public class InputDialogBuilder extends Builder {
 		buildBase(context);
 	}
 
-	private void buildBase(Context context) {
-		content = View.inflate(context, R.layout.input_dialog, null);
-		setCancelable(true);
-		setView(content);
-	}
-
 	public EditText getEditText() {
 		return (EditText) content.findViewById(R.id.input);
 	}
@@ -35,5 +29,11 @@ public class InputDialogBuilder extends Builder {
 	public Builder setMessage(CharSequence message) {
 		((TextView) content.findViewById(R.id.label)).setText(message);
 		return this;
+	}
+	
+	private void buildBase(Context context) {
+		content = View.inflate(context, R.layout.input_dialog, null);
+		setCancelable(true);
+		setView(content);
 	}
 }
