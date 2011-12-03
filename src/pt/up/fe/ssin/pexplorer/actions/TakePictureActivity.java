@@ -1,4 +1,4 @@
-package pt.up.fe.ssin.pexplorer.app;
+package pt.up.fe.ssin.pexplorer.actions;
 
 import java.io.IOException;  
 

@@ -39,7 +39,7 @@
 		</activity>
 		<activity android:name=".app.FilterConfigActivity" >
 		</activity>
-		<activity android:name=".app.TakePictureActivity" android:configChanges="orientation">
+		<activity android:name=".actions.TakePictureActivity" android:configChanges="orientation">
 		</activity>
 		<provider android:name=".data.PermissionExplorerContentProvider"
          android:authorities="pt.up.fe.ssin.pexplorer.data.permissionexplorercontentprovider"/>   

@@ -2,7 +2,6 @@ package pt.up.fe.ssin.pexplorer.actions;
 
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.app.PermissionAction;
-import pt.up.fe.ssin.pexplorer.app.TakePictureActivity;
 import android.content.Context;
 import android.content.Intent;
 
