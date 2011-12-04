@@ -18,7 +18,7 @@ import pt.up.fe.ssin.pexplorer.actions.RebootAction;
 import pt.up.fe.ssin.pexplorer.actions.RetrieveRunningTasksAction;
 import pt.up.fe.ssin.pexplorer.actions.SendTestSmsAction;
 import pt.up.fe.ssin.pexplorer.actions.ShellCommandAction;
-import pt.up.fe.ssin.pexplorer.actions.TakePicutreAction;
+import pt.up.fe.ssin.pexplorer.actions.TakePictureAction;
 import pt.up.fe.ssin.pexplorer.actions.VibrateAction;
 import pt.up.fe.ssin.pexplorer.actions.WriteCalendarAction;
 import pt.up.fe.ssin.pexplorer.actions.WriteExternalStorageAction;
@@ -61,7 +61,7 @@ public class ActionRegistry {
 		getInstance().addAction("android.permission.VIBRATE", 
 				new VibrateAction());
 		getInstance().addAction("android.permission.CAMERA", 
-				new TakePicutreAction());
+				new TakePictureAction());
 		getInstance().addAction("android.permission.READ_CALENDAR", 
 				new ReadCalendarAction());
 		getInstance().addAction("android.permission.WRITE_CALENDAR", 

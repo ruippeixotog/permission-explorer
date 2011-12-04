@@ -17,19 +17,21 @@ public class GetAccountsAction extends PermissionAction {
 
 	@Override
 	protected void doAction(final Context context) {
-		
 		Account[] accounts = AccountManager.get(context).getAccounts();
-		String currentAccounts = "You current accounts\n";
-		for (Account account : accounts) {
-			currentAccounts += "Name: " + account.name + "\nType " + account.type +"\n";
-		}
+		String currentAccounts = context.getString(R.string.get_accounts_intro);
+		for (Account account : accounts)
+			currentAccounts += String.format(
+					context.getString(R.string.get_accounts_entry),
+					account.name, account.type);
 
 		new AlertDialog.Builder(context)
-	       .setTitle(R.string.get_accounts_tile)
-	       .setMessage(currentAccounts)
-	       .setCancelable(true)
-	       .setPositiveButton(R.string.continue_,new DialogInterface.OnClickListener() {
-		   public void onClick(DialogInterface dialog, int id) {}
-	    }).show();	 
+				.setTitle(R.string.get_accounts_tile)
+				.setMessage(currentAccounts)
+				.setCancelable(true)
+				.setPositiveButton(R.string.continue_,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+							}
+						}).show();
 	}
 }
