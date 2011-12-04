@@ -29,7 +29,6 @@ public class ReadContactsAction extends PermissionAction {
 						String.format(context.getString(
 								R.string.read_contact_entry,
 								randomContact.getName(),
-								randomContact.getEmail(),
 								randomContact.getPhoneNumber())))
 				.setCancelable(true)
 				.setPositiveButton(R.string.continue_,

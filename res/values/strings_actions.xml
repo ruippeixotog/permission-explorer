@@ -59,7 +59,7 @@
 	<string name="get_accounts_entry">Name: %1$s\nType: %2$s\n</string>
 	<string name="retrieve_running_tasks_intro">Running tasks:\n</string>
 	<string name="read_calendar_entry">Title:\n%1$s\nBegin:\n%2$s\nEnd:\n%3$s</string>
-	<string name="read_contact_entry">Name:\n%1$s\nEmail:\n%2$s\nPhone number:\n%3$s</string>
+	<string name="read_contact_entry">Name:\n%1$s\nPhone number:\n%2$s</string>
 	<string name="read_phone_state_entry">IMEI:\n%1$s\nPhone number:\n%2$s\nSoftware version:\n%3$s\nSIM Serial:\n%4$s\nSubscriber ID:\n%5$s</string>
 	<string name="write_calendar_success">New calendar event was created successfully.</string>
 	<string name="write_calendar_event_title">Permission Explorer created event.</string>
