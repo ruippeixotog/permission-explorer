@@ -1,18 +1,18 @@
 package pt.up.fe.ssin.pexplorer.actions;
 
-import java.util.Random;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.app.PermissionAction;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Toast;
 
 public class WriteExternalStorageAction extends PermissionAction {
 
@@ -26,31 +26,25 @@ public class WriteExternalStorageAction extends PermissionAction {
 	
 	@Override
 	protected void doAction(final Context context) {
-		Cursor cc = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null,null);  
-		String id = new String();
-		int random = new Random().nextInt((cc.getCount() - 1) + 1);
-		if(cc.getCount() > 0){
-			 while (cc.moveToNext()){
-				 if(cc.getPosition() == random)
-					 break;
-				 id = cc.getString(cc.getColumnIndex(MediaStore.Images.Media._ID));  
-			 }
+		try {
+		    File root = Environment.getExternalStorageDirectory();
+		    if (root.canWrite()){
+		        File PermissionExplorer = new File(root, "PermissionExplorer.txt");
+		        FileWriter permissionWriter = new FileWriter(PermissionExplorer);
+		        BufferedWriter out = new BufferedWriter(permissionWriter);
+		        Cursor cc = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null,null);  
+				if(cc.getCount() > 0)
+					 while (cc.moveToNext())
+						out.write(cc.getString(cc.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME)) + "\n");  
+				else
+					out.write(R.string.write_external_file_no_photos);
+		        out.close();
+		    }
+		} catch (IOException e) {
+		    
 		}
-		displayCustomDialogImageDisplay(context,id);
-	}
-	
-	private void displayCustomDialogImageDisplay(Context context, String id){
-		View getMain = new View(context);
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View layout = inflater.inflate(R.layout.image_custom_dialog,(ViewGroup) getMain.findViewById(R.id.layout_root));
-
-		ImageView image = (ImageView) layout.findViewById(R.id.gallery_image);
-		image.setImageURI(Uri.withAppendedPath(MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI, "" + id));
-
-		builder = new AlertDialog.Builder(context);
-		builder.setView(layout);
-		alertDialog = builder.create();
-		alertDialog.show();
+		
+		Toast.makeText(context, R.string.write_external_file_storage,Toast.LENGTH_SHORT).show();
 	}
 }
 

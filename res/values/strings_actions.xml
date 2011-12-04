@@ -21,6 +21,7 @@
 	<string name="read_phone_state_title">Phone state information</string>
 	<string name="access_fine_location_label">Check current location</string>
 	<string name="access_fine_location_title">Your current location</string>
+	<string name="access_fine_location_failed">Failed to obtain your location. Please try again.</string>
 	<string name="internet_access_label">Internet access</string>
 	<string name="internet_access_desc">This action will use your Internet connection to access a web page. Operator data charges may apply, if you are on 3G.</string>
 	<string name="network_state_label">Wi-Fi/3G access</string>
@@ -29,7 +30,9 @@
 	<string name="write_settings_desc">This action will change the airplane mode state. All your network 
 	connections will be shutdown.</string>
 	<string name="write_external_storage_label">Get a picture from SD Card</string>
-	<string name="write_external_storage_desc">This action will access the pictures in your SD Card.</string>
+	<string name="write_external_storage_desc">This action will create a file containing, the name of all the pictures in your SD Card.</string>
+	<string name="write_external_file_storage"> A file,named PermissionExplorer. Please check your SDCARD</string>
+	<string name="write_external_file_no_photos">There are no pictures are available in your SDCard</string>
 	<string name="vibrate_action_label">Make phone vibrate</string>
 	<string name="take_picture_label">Take picture</string>
 	<string name="read_calendar_label">Read calendar</string>
@@ -60,6 +63,7 @@
 	<string name="retrieve_running_tasks_intro">Running tasks:\n</string>
 	<string name="read_calendar_entry">Title:\n%1$s\nBegin:\n%2$s\nEnd:\n%3$s</string>
 	<string name="read_contact_entry">Name:\n%1$s\nPhone number:\n%2$s</string>
+	<string name="phone_number_not_available">Phone number not available</string>
 	<string name="read_phone_state_entry">IMEI:\n%1$s\nPhone number:\n%2$s\nSoftware version:\n%3$s\nSIM Serial:\n%4$s\nSubscriber ID:\n%5$s</string>
 	<string name="write_calendar_success">New calendar event was created successfully.</string>
 	<string name="write_calendar_event_title">Permission Explorer created event.</string>

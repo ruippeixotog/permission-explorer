@@ -17,9 +17,10 @@ import android.widget.Toast;
 public class AccessFineLocationAction extends PermissionAction {
 
 	LocationManager m_location_manager;
-	Boolean gpsEnabled;
+	boolean gpsEnabled;
 	Timer timer1;
 	public LocationResult locationResult;
+	boolean failed = true;
 
 	public AccessFineLocationAction() {
 		super(R.string.access_fine_location_label,
@@ -42,20 +43,23 @@ public class AccessFineLocationAction extends PermissionAction {
 			locationResult = new LocationResult() {
 				@Override
 				public void gotLocation(final Location location) {
-					new AlertDialog.Builder(context)
-							.setTitle(R.string.access_fine_location_title)
-							.setMessage(
-									String.format(
-											context.getString(R.string.access_fine_location_coord),
-											location.getLatitude(), location
-													.getLongitude()))
-							.setCancelable(true)
-							.setPositiveButton(R.string.continue_,
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-										}
-									}).show();
+					if(location != null){
+						failed = false;
+						new AlertDialog.Builder(context)
+								.setTitle(R.string.access_fine_location_title)
+								.setMessage(
+										String.format(
+												context.getString(R.string.access_fine_location_coord),
+												location.getLatitude(), location
+														.getLongitude()))
+								.setCancelable(true)
+								.setPositiveButton(R.string.continue_,
+										new DialogInterface.OnClickListener() {
+											public void onClick(
+													DialogInterface dialog, int id) {
+											}
+										}).show();
+					}
 				};
 			};
 		} else

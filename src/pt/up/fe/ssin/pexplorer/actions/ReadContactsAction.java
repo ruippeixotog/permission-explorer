@@ -42,31 +42,31 @@ public class ReadContactsAction extends PermissionAction {
 		Cursor cur = context.getContentResolver().query(
 				ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
 		int random = new Random().nextInt((cur.getCount() - 1) + 1);
-		String name = null, phoneNumber = null;
+		String name = null, phoneNumber = context.getString(R.string.phone_number_not_available);
 		if (cur.getCount() > 0) {
 			while (cur.moveToNext()) {
-				if (cur.getPosition() == random)
+				if (cur.getPosition() == random){
+					String id = cur.getString(cur
+							.getColumnIndex(ContactsContract.Contacts._ID));
+					name = cur
+							.getString(cur
+									.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+						if (Integer
+								.parseInt(cur.getString(cur
+										.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+							Cursor pCur = context.getContentResolver().query(
+									ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+									null,
+									ContactsContract.CommonDataKinds.Phone.CONTACT_ID
+											+ " = ?", new String[] { id }, null);
+							while (pCur.moveToNext()) {
+								phoneNumber = pCur
+										.getString(pCur
+												.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+							}
+							pCur.close();
+						}
 					break;
-				String id = cur.getString(cur
-						.getColumnIndex(ContactsContract.Contacts._ID));
-				name = cur
-						.getString(cur
-								.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-
-				if (Integer
-						.parseInt(cur.getString(cur
-								.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
-					Cursor pCur = context.getContentResolver().query(
-							ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-							null,
-							ContactsContract.CommonDataKinds.Phone.CONTACT_ID
-									+ " = ?", new String[] { id }, null);
-					while (pCur.moveToNext()) {
-						phoneNumber = pCur
-								.getString(pCur
-										.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-					}
-					pCur.close();
 				}
 			}
 		}
