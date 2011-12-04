@@ -21,7 +21,7 @@ public class PermissionExplorerContentProvider extends ContentProvider {
 
 	private static final String DATABASE_NAME = "security.db";
 
-	private static final int DATABASE_VERSION = 4;
+	private static final int DATABASE_VERSION = 5;
 
 	public static final String AUTHORITY = "pt.up.fe.ssin.pexplorer.data.permissionexplorercontentprovider";
 

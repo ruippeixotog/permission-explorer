@@ -62,7 +62,7 @@ public class AccessFineLocationAction extends PermissionAction {
 					}
 				};
 			};
-		} else
+		}else
 			Toast.makeText(context, R.string.access_fine_location_not_enabled,
 					Toast.LENGTH_SHORT).show();
 	}
