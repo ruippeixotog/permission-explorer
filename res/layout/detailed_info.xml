@@ -18,7 +18,7 @@
 		<TextView
 			android:id="@+id/name"
 			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
+			android:layout_height="wrap_content"
 			android:paddingBottom="@dimen/line_spacing" />
 
 		<TextView
@@ -30,7 +30,7 @@
 		<TextView
 			android:id="@+id/group"
 			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
+			android:layout_height="wrap_content"
 			android:paddingBottom="@dimen/line_spacing" />
 
 		<TextView
@@ -42,7 +42,7 @@
 		<TextView
 			android:id="@+id/level"
 			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
+			android:layout_height="wrap_content"
 			android:paddingBottom="@dimen/line_spacing" />
 
 		<TextView
@@ -54,13 +54,13 @@
 		<TextView
 			android:id="@+id/description"
 			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
+			android:layout_height="wrap_content"
 			android:paddingBottom="@dimen/line_spacing_short" />
 
 		<TextView
 			android:id="@+id/ext_description"
 			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
+			android:layout_height="wrap_content"
 			android:paddingBottom="@dimen/line_spacing" />
 	</LinearLayout>
 
