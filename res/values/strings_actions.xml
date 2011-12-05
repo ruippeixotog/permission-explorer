@@ -29,7 +29,7 @@
 	<string name="write_settings_label">Change airplane mode state</string>
 	<string name="write_settings_desc">This action will change the airplane mode state. All your network 
 	connections will be shutdown.</string>
-	<string name="write_external_storage_label">Get a picture from SD Card</string>
+	<string name="write_external_storage_label">Create File in SD Card</string>
 	<string name="write_external_storage_desc">This action will create a file containing, the name of all the pictures in your SD Card.</string>
 	<string name="write_external_file_storage"> A file,named PermissionExplorer. Please check your SDCARD</string>
 	<string name="write_external_file_no_photos">There are no pictures are available in your SDCard</string>
