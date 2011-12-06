@@ -10,7 +10,6 @@ import android.app.ActivityManager.RunningTaskInfo;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.view.LayoutInflater;
 
 public class RetrieveRunningTasksAction extends PermissionAction {
 
@@ -38,9 +37,6 @@ public class RetrieveRunningTasksAction extends PermissionAction {
 				.setTitle(R.string.retrive_running_tasks_label)
 				.setMessage(text)
 				.setCancelable(true)
-				.setView(
-						LayoutInflater.from(context).inflate(
-								R.layout.scrollabledialog, null))
 				.setPositiveButton(R.string.continue_,
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {

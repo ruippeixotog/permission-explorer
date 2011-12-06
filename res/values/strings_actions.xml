@@ -31,7 +31,7 @@
 	connections will be shutdown.</string>
 	<string name="write_external_storage_label">Create File in SD Card</string>
 	<string name="write_external_storage_desc">This action will create a file containing, the name of all the pictures in your SD Card.</string>
-	<string name="write_external_file_storage"> A file,named PermissionExplorer. Please check your SDCARD</string>
+	<string name="write_external_file_storage"> A file,named PermissionExplorer was created. Please check your SDCARD</string>
 	<string name="write_external_file_no_photos">There are no pictures are available in your SDCard</string>
 	<string name="vibrate_action_label">Make phone vibrate</string>
 	<string name="take_picture_label">Take picture</string>
