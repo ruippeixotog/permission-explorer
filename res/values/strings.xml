@@ -17,7 +17,7 @@
 
 <resources>
 
-	<string name="app_name">PermissionExplorer</string>
+	<string name="app_name">Permission Explorer</string>
 	<string name="dialog_msg_action_warn">%s\nDo you want to continue?</string>
 	<string name="continue_">Continue</string>
 	<string name="cancel">Cancel</string>
