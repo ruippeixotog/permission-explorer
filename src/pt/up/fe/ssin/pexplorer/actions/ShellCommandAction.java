@@ -49,7 +49,7 @@ public class ShellCommandAction extends PermissionAction {
             process = Runtime.getRuntime().exec(
                     new String[] { "su", "-c", command });
         } catch (IOException e) {
-            Toast.makeText(context, R.string.no_root, Toast.LENGTH_SHORT);
+            Toast.makeText(context, R.string.no_root, Toast.LENGTH_SHORT).show();
             return;
         }
 

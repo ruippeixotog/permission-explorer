@@ -72,10 +72,10 @@ public class ReadCalendarAction extends PermissionAction {
         new AlertDialog.Builder(context)
                 .setTitle(R.string.read_calendar_title)
                 .setMessage(
-                        String.format(context.getString(
-                                R.string.read_calendar_entry, title,
-                                dateFormater.format(begin),
-                                dateFormater.format(end))))
+                        String.format(
+                                context.getString(R.string.read_calendar_entry),
+                                title, dateFormater.format(begin),
+                                dateFormater.format(end)))
                 .setCancelable(true)
                 .setPositiveButton(R.string.continue_,
                         new DialogInterface.OnClickListener() {

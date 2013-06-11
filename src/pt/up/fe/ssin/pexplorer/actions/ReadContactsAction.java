@@ -26,10 +26,10 @@ public class ReadContactsAction extends PermissionAction {
         new AlertDialog.Builder(context)
                 .setTitle(R.string.read_contact_title)
                 .setMessage(
-                        String.format(context.getString(
-                                R.string.read_contact_entry,
+                        String.format(
+                                context.getString(R.string.read_contact_entry),
                                 randomContact.getName(),
-                                randomContact.getPhoneNumber())))
+                                randomContact.getPhoneNumber()))
                 .setCancelable(true)
                 .setPositiveButton(R.string.continue_,
                         new DialogInterface.OnClickListener() {

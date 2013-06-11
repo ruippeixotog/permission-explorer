@@ -57,10 +57,10 @@
     <string name="show_all_apps">Show all apps</string>
     <string name="show_only_downloaded_apps">Show only downloaded apps</string>
     <string name="no_info_available">No additional information available.</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="close">Close</string>
     <string name="execute">Execute</string>
-    <string name="no_actions_available">No actions avaliable.</string>
+    <string name="no_actions_available">No actions available.</string>
     <string name="app_icon">App icon</string>
 
 </resources>
