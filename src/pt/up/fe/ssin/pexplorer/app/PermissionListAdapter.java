@@ -1,6 +1,7 @@
 package pt.up.fe.ssin.pexplorer.app;
 
 import java.util.List;
+import java.util.Locale;
 
 import pt.up.fe.ssin.pexplorer.R;
 import pt.up.fe.ssin.pexplorer.data.PermissionCatalog;
@@ -35,13 +36,14 @@ public class PermissionListAdapter extends SimpleObjectAdapter<PermissionInfo> {
 
     @Override
     public boolean isFilterMatch(CharSequence constraint, PermissionInfo perm) {
-        String[] prefixes = constraint.toString().toLowerCase().split(" ");
+        String[] prefixes = constraint.toString()
+                .toLowerCase(Locale.getDefault()).split(" ");
         String[] words = PermissionUtils.getShortName(perm).split("_");
 
         for (String prefix : prefixes) {
             boolean hasPrefix = false;
             for (String word : words)
-                if (word.toLowerCase().startsWith(prefix)) {
+                if (word.toLowerCase(Locale.getDefault()).startsWith(prefix)) {
                     hasPrefix = true;
                     break;
                 }

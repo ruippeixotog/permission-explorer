@@ -3,6 +3,7 @@ package pt.up.fe.ssin.pexplorer.utils.ui;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import android.content.Context;
 import android.view.View;
@@ -69,8 +70,11 @@ public class SimpleObjectAdapter<T> extends BaseAdapter implements Filterable {
 
     public boolean isFilterMatch(CharSequence constraint, T obj) {
         return obj != null
-                && obj.toString().toUpperCase()
-                        .startsWith(constraint.toString().toUpperCase());
+                && obj.toString()
+                        .toUpperCase(Locale.getDefault())
+                        .startsWith(
+                                constraint.toString().toUpperCase(
+                                        Locale.getDefault()));
     }
 
     private class ObjectFilter extends Filter {
