@@ -14,8 +14,6 @@
     <string name="tab_filter_groups">By group</string>
     <string name="tab_filter_level">By level</string>
     <string name="tab_filter_relevance">By relevance</string>
-    <string name="title_filter_config">Configure filter</string>
-    <string name="title_perm_list">Permission Explorer</string>
 
     <string-array name="level_labels">
         <item>normal</item>

@@ -13,15 +13,12 @@
     <string name="call_phone_title">Call phone</string>
     <string name="call_phone_dialog_label">Choose the mobile number to make the call.</string>
     <string name="read_contact_label">Get information about a contact</string>
-    <string name="read_contact">Read a contact</string>
     <string name="read_contact_title">Contact information</string>
     <string name="read_phone_state_label">Phone state information</string>
-    <string name="read_phone_state">Read phone state information</string>
     <string name="read_phone_state_desc">This action will access confidential information about your phone.</string>
     <string name="read_phone_state_title">Phone state information</string>
     <string name="access_fine_location_label">Check current location</string>
     <string name="access_fine_location_title">Your current location</string>
-    <string name="access_fine_location_failed">Failed to obtain your location. Please try again.</string>
     <string name="internet_access_label">Internet access</string>
     <string name="internet_access_desc">This action will use your Internet connection to access a web page. Operator data charges may apply, if you are on 3G.</string>
     <string name="network_state_label">Wi-Fi/3G access</string>
@@ -35,6 +32,7 @@
     <string name="write_external_file_no_photos">There are no pictures are available in your SDCard</string>
     <string name="vibrate_action_label">Make phone vibrate</string>
     <string name="take_picture_label">Take picture</string>
+    <string name="take_picture_image">Camera picture</string>
     <string name="read_calendar_label">Read calendar</string>
     <string name="read_calendar_title">An event from your calendar</string>
     <string name="write_calendar_label">Write calendar</string>
@@ -49,7 +47,7 @@
     <string name="shell_command_output">Command output</string>
     <string name="shell_command_input_msg">Input the shell command to execute:</string>
     <string name="shell_command_input_title">Root command</string>
-    <string name="access_fine_location_retr">GPS is enabled. Retrieving your current location...</string>
+    <string name="access_fine_location_retr">GPS is enabled. Retrieving your current location…</string>
     <string name="access_fine_location_coord">Latitude:\n%1$f\nLongitude:\n%2$f</string>
     <string name="access_fine_location_not_enabled">Your GPS is not enabled! Please turn it on.</string>
     <string name="network_state_wifi_on">Wi-Fi is on. </string>

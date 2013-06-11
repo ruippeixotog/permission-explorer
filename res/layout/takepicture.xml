@@ -6,6 +6,7 @@
 
     <ImageView
         android:id="@+id/picImage"
+        android:contentDescription="@string/take_picture_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
     </ImageView>
