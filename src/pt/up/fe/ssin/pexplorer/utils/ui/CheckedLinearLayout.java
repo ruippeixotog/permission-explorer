@@ -8,42 +8,42 @@ import android.widget.LinearLayout;
 
 public class CheckedLinearLayout extends LinearLayout implements Checkable {
 
-	private Checkable checkable;
+    private Checkable checkable;
 
-	public CheckedLinearLayout(Context context) {
-		super(context);
-	}
-	
-	public CheckedLinearLayout(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public CheckedLinearLayout(Context context) {
+        super(context);
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-		for (int i = 0; i < getChildCount(); i++) {
-			View v = getChildAt(i);
-			if (v instanceof Checkable) {
-				checkable = (Checkable) v;
-				return;
-			}
-		}
-		throw new ClassCastException(
-				"No Checkable child view found in CheckedLinearLayout.");
-	}
+    public CheckedLinearLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	@Override
-	public boolean isChecked() {
-		return checkable.isChecked();
-	}
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        for (int i = 0; i < getChildCount(); i++) {
+            View v = getChildAt(i);
+            if (v instanceof Checkable) {
+                checkable = (Checkable) v;
+                return;
+            }
+        }
+        throw new ClassCastException(
+                "No Checkable child view found in CheckedLinearLayout.");
+    }
 
-	@Override
-	public void setChecked(boolean checked) {
-		checkable.setChecked(checked);
-	}
+    @Override
+    public boolean isChecked() {
+        return checkable.isChecked();
+    }
 
-	@Override
-	public void toggle() {
-		checkable.toggle();
-	}
+    @Override
+    public void setChecked(boolean checked) {
+        checkable.setChecked(checked);
+    }
+
+    @Override
+    public void toggle() {
+        checkable.toggle();
+    }
 }

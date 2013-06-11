@@ -8,32 +8,32 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class InputDialogBuilder extends Builder {
-	
-	private View content;
 
-	public InputDialogBuilder(Context context) {
-		super(context);
-		buildBase(context);
-	}
+    private View content;
 
-	public EditText getEditText() {
-		return (EditText) content.findViewById(R.id.input);
-	}
+    public InputDialogBuilder(Context context) {
+        super(context);
+        buildBase(context);
+    }
 
-	@Override
-	public Builder setMessage(int messageId) {
-		return setMessage(content.getContext().getString(messageId));
-	}
+    public EditText getEditText() {
+        return (EditText) content.findViewById(R.id.input);
+    }
 
-	@Override
-	public Builder setMessage(CharSequence message) {
-		((TextView) content.findViewById(R.id.label)).setText(message);
-		return this;
-	}
-	
-	private void buildBase(Context context) {
-		content = View.inflate(context, R.layout.input_dialog, null);
-		setCancelable(true);
-		setView(content);
-	}
+    @Override
+    public Builder setMessage(int messageId) {
+        return setMessage(content.getContext().getString(messageId));
+    }
+
+    @Override
+    public Builder setMessage(CharSequence message) {
+        ((TextView) content.findViewById(R.id.label)).setText(message);
+        return this;
+    }
+
+    private void buildBase(Context context) {
+        content = View.inflate(context, R.layout.input_dialog, null);
+        setCancelable(true);
+        setView(content);
+    }
 }

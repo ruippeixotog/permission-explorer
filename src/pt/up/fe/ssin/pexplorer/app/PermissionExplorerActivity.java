@@ -20,122 +20,122 @@ import android.widget.TextView;
 
 public class PermissionExplorerActivity extends ListActivity {
 
-	public static final int FILTER_REQ_CODE = 0;
+    public static final int FILTER_REQ_CODE = 0;
 
-	private PermissionCatalog catalog;
-	private List<PermissionInfo> permissions;
-	private PermissionListAdapter adapter;
+    private PermissionCatalog catalog;
+    private List<PermissionInfo> permissions;
+    private PermissionListAdapter adapter;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		catalog = PermissionCatalog.getInstance(this);
-		loadPreferences();
-		
-		drawActivity();
-	}
+        catalog = PermissionCatalog.getInstance(this);
+        loadPreferences();
 
-	private void loadPreferences() {
-		SharedPreferences prefs = getSharedPreferences(Keys.PREFS_FILE,
-				MODE_PRIVATE);
+        drawActivity();
+    }
 
-		String[] groupNames = prefs.contains(Keys.PREFS_GROUPS) ? prefs
-				.getString(Keys.PREFS_GROUPS, null).split(";") : null;
-		int level = prefs.getInt(Keys.PREFS_LEVEL, Keys.DEFAULT_LEVEL);
-		int relevance = prefs.getInt(Keys.PREFS_RELEVANCE,
-				Keys.DEFAULT_RELEVANCE);
+    private void loadPreferences() {
+        SharedPreferences prefs = getSharedPreferences(Keys.PREFS_FILE,
+                MODE_PRIVATE);
 
-		permissions = catalog.filter(catalog.getAll(), groupNames, level,
-				relevance);
-	}
+        String[] groupNames = prefs.contains(Keys.PREFS_GROUPS) ? prefs
+                .getString(Keys.PREFS_GROUPS, null).split(";") : null;
+        int level = prefs.getInt(Keys.PREFS_LEVEL, Keys.DEFAULT_LEVEL);
+        int relevance = prefs.getInt(Keys.PREFS_RELEVANCE,
+                Keys.DEFAULT_RELEVANCE);
 
-	private void drawActivity() {
-		setContentView(R.layout.perm_list);
+        permissions = catalog.filter(catalog.getAll(), groupNames, level,
+                relevance);
+    }
 
-		adapter = new PermissionListAdapter(this, permissions);
-		adapter.registerDataSetObserver(new ListCounterDataSetObserver());
-		setListAdapter(adapter);
+    private void drawActivity() {
+        setContentView(R.layout.perm_list);
 
-		EditText filterText = (EditText) findViewById(R.id.search_box);
-		filterText.addTextChangedListener(new FilterTextWatcher(adapter));
+        adapter = new PermissionListAdapter(this, permissions);
+        adapter.registerDataSetObserver(new ListCounterDataSetObserver());
+        setListAdapter(adapter);
 
-		updateListCounter();
-	}
+        EditText filterText = (EditText) findViewById(R.id.search_box);
+        filterText.addTextChangedListener(new FilterTextWatcher(adapter));
 
-	private void updateListCounter() {
-		TextView tv = (TextView) findViewById(R.id.list_count);
-		tv.setText(String.format(getString(R.string.msg_perm_list_count),
-				adapter.getCount()));
-	}
+        updateListCounter();
+    }
 
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		PermissionInfo perm = (PermissionInfo) getListAdapter().getItem(
-				position);
-		Intent intent = new Intent(this, PermissionInfoActivity.class);
-		intent.putExtra(Keys.INTENT_EXT_NAME, perm.name);
-		startActivity(intent);
-	}
+    private void updateListCounter() {
+        TextView tv = (TextView) findViewById(R.id.list_count);
+        tv.setText(String.format(getString(R.string.msg_perm_list_count),
+                adapter.getCount()));
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.perm_list, menu);
-		return true;
-	}
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        PermissionInfo perm = (PermissionInfo) getListAdapter().getItem(
+                position);
+        Intent intent = new Intent(this, PermissionInfoActivity.class);
+        intent.putExtra(Keys.INTENT_EXT_NAME, perm.name);
+        startActivity(intent);
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.perm_list, menu);
+        return true;
+    }
 
-		case R.id.filter: {
-			Intent intent = new Intent(this, FilterConfigActivity.class);
-			startActivityForResult(intent, FILTER_REQ_CODE);
-			return true;
-		}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
 
-		case R.id.reload: {
-			PermissionCatalog.getInstance(this).reload();
-			Intent intent = new Intent(this, PermissionExplorerActivity.class);
-			startActivity(intent);
-			finish();
-			return true;
-		}
+        case R.id.filter: {
+            Intent intent = new Intent(this, FilterConfigActivity.class);
+            startActivityForResult(intent, FILTER_REQ_CODE);
+            return true;
+        }
 
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+        case R.id.reload: {
+            PermissionCatalog.getInstance(this).reload();
+            Intent intent = new Intent(this, PermissionExplorerActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (requestCode) {
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
-		case FILTER_REQ_CODE:
-			if (resultCode != RESULT_OK)
-				return;
-			loadPreferences();
-			drawActivity();
-			return;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
 
-		default:
-			super.onActivityResult(requestCode, resultCode, data);
-			return;
-		}
-	}
+        case FILTER_REQ_CODE:
+            if (resultCode != RESULT_OK)
+                return;
+            loadPreferences();
+            drawActivity();
+            return;
 
-	private class ListCounterDataSetObserver extends DataSetObserver {
+        default:
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+    }
 
-		@Override
-		public void onChanged() {
-			super.onChanged();
-			updateListCounter();
-		}
+    private class ListCounterDataSetObserver extends DataSetObserver {
 
-		@Override
-		public void onInvalidated() {
-			super.onInvalidated();
-			updateListCounter();
-		}
-	}
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            updateListCounter();
+        }
+
+        @Override
+        public void onInvalidated() {
+            super.onInvalidated();
+            updateListCounter();
+        }
+    }
 }
